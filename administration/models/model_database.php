@@ -36,7 +36,7 @@ class WBCT_database
                `precio` double NOT NULL,
            PRIMARY KEY (`id`)
            )$charset_collate;";
-        dbDelta($tableProductos);
+      
 
         //tabla proforma
         $tablaCotizacion = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}wbct_cotizacion(
@@ -53,7 +53,7 @@ class WBCT_database
                 FOREIGN KEY (`id_cli`) REFERENCES {$wpdb->prefix}wbct_cliente(`id`),
                 PRIMARY KEY (`id`)
                 )$charset_collate;";
-        dbDelta($tablaCotizacion);
+      
 
         //tabla detalle proforma
         $tablaDetalle = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}wbct_det_proforma(

@@ -1,21 +1,21 @@
 <?php
-add_action('admin_menu', 'wrpro_menu_admin');
-function wrpro_menu_admin()
+add_action('admin_menu', 'wbct_menu_admin');
+function wbct_menu_admin()
 {
     add_menu_page(
-        'Proforma',
-        'Proformas',
-        'wr_proforma',
-        'wrpro_menu',
-        'wrpro_subemnu_mostrarContenido',
+        'Cotizacion',
+        'Cotizacion',
+        'wb_cotizacion',
+        'wbct_menu',
+        'wbct_subemnu_mostrarContenido',
         plugin_dir_url(__FILE__) . '../static/imagenes/proforma.png',
-        '2'
+        '8'
     );
-    add_submenu_page('wrpro_menu', 'listProformas', 'Crear Proforma', 'wr_proforma', 'wrpro_menu_listproforma', 'wrpro_submenuProformas');
-    add_submenu_page('wrpro_menu', 'Cliente', 'Clientes', 'wr_proforma', 'wrpro_menu_clientes', 'wrpro_submenuCliente');
-    add_submenu_page('wrpro_menu', 'producto', 'Productos', 'wr_proforma', 'wrpro_menu_producto', 'wrpro_submenuProducto');
-    add_submenu_page(null, 'reportes', 'reportes', 'wr_proforma', 'wrpro_menu_reportes', 'wrpro_submenuProformas_reportes');
-    add_submenu_page('wrpro_menu', 'Configuracion', 'Configuración', 'wr_proforma', 'wrpro_menu_configuracion', 'wrpro_submenuProformas_configuracion');
+    add_submenu_page('wbct_menu', 'listProformas', 'Crear Cotizacion', 'wb_cotizacion', 'wrpro_menu_listproforma', 'wrpro_submenuProformas');
+    add_submenu_page('wbct_menu', 'Cliente', 'Clientes', 'wb_cotizacion', 'wrpro_menu_clientes', 'wrpro_submenuCliente');
+    add_submenu_page('wbct_menu', 'producto', 'Productos', 'wb_cotizacion', 'wrpro_menu_producto', 'wrpro_submenuProducto');
+    add_submenu_page(null, 'reportes', 'reportes', 'wb_cotizacion', 'wrpro_menu_reportes', 'wrpro_submenuProformas_reportes');
+    add_submenu_page('wbct_menu', 'Configuracion', 'Configuración', 'wb_cotizacion', 'wrpro_menu_configuracion', 'wrpro_submenuProformas_configuracion');
 }
 //configuraciones
 function wrpro_submenuProformas_configuracion()
@@ -30,7 +30,7 @@ function wrpro_submenuProformas()
     $wrpro->wrpro_load_page("proforma.phtml");
 }
 
-function wrpro_subemnu_mostrarContenido()
+function wbct_subemnu_mostrarContenido()
 {
     $wrpro = new WRPRO_AdminLoad_PageController();
     $wrpro->wrpro_load_page("inicio.phtml");
