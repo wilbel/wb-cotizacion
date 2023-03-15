@@ -1,0 +1,106 @@
+<div class="container-fluid">
+    <div class="col-12">
+        <div class="well well-sm cuadrado card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1><?php _e("Generar reportes"); ?></h1>
+                    <p><?php _e("Generar reportes semanales,mensuales."); ?></p>
+                </div>
+                <div class="col-md-4">
+                    <img class="img-logo" width="50%" src="<?php echo plugin_dir_url(__FILE__) . '../../static/imagenes/webrevolution.png' ?>">
+                </div>
+            </div>
+        </div>
+
+        <div class="cuadrado">
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-lg-3 col-md-4 col-sm-12 col-xs-12 ">
+                        <a href="admin.php?page=wrpro_menu_listproforma" class="btn btn-info"><i class="fas fa-file-invoice"></i> <?php _e("Generar proformas") ?></a>
+                    </div>
+                    <form action="#" method="POST">
+                        <?php _e("Desde:") ?>
+                        <input type="date" id="txt_date_inicio" class="txt_date_inicio" name="txt_date_inicio" value="<?= $fecha_inicio ?>" required>
+                        <?php _e("Hasta:") ?>
+                        <input class="" type="date" min="<?php echo date("Y-m-d") ?>" name="txt_date_fin" id="txt_date_fin" value="<?= $fecha_fin ?>" required>
+                        <!--input type="radio" id="btn_radio_opcion" name="btn_radio_opcion" value="negro"> Aprobadas
+                        <input type="radio" id="btn_radio_opcion" name="btn_radio_opcion" value="negro"> Todas -->
+                        <button type="submit" class="btn btn-success"> <?php _e('Aceptar') ?> </button>
+                    </form>
+                </div>
+                <hr>
+                <table class="table-responsive  table table-striped" id="iptable1" style="font-size:12px;">
+                    <thead style="background-color:#D6DBDF ;color:black;font-weight: bold;">
+                        <tr>
+                            <th style="width: 10%;" class="text-center"> <?php _e("PROF.") ?> </th>
+                            <th style="width: 40%;" class="text-center"> <?php _e("CLIENTE") ?> </th>
+                            <th style="width: 15%;" class="text-center"><?php _e("FECHA") ?> </th>
+                            <th style="width: 5%;" class="text-center"><?php _e("SUBTOTAL")  ?></th>
+                            <th style="width: 5%;" class="text-center"><?php _e("IVA") ?></th>
+                            <th style="width: 10%;" class="text-center"><?php _e("TOTAL")  ?></th>
+                        </tr>
+                    </thead>
+                    <?php
+                    
+                    if (!empty($listar_proformas)) {
+                        foreach ($listar_proformas as $proforma) {
+                            $subtotal = $subtotal + $proforma['subtotalall'];
+                            $total_iva = $total_iva + $proforma['iva'];
+                            $total = $total + $proforma['total']; ?>
+                            <tr style="color:black;font-size:14px;">
+                                <td style="width: 10%;" class="text-center"><?= $proforma['id'];  ?></td>
+                                <?php
+                                $cliente = null;
+                                $lista_cliente =  $oper_clientes->wr_pro_load_clientes($proforma['id_cli']);
+                                foreach ($lista_cliente as $iterator) {
+                                    $cliente =  $iterator['nom'];
+                                } ?>
+
+                                <td style="width: 40%;" class="text-center"> <?= $cliente  ?> </td>
+                                <td style="width: 15%;" class="text-center"> <?= $proforma['fecha']; ?> </td>
+                                <td style="width: 5%;" class="text-center"> <?= number_format($proforma['subtotalall'], 2, '.', ''); ?> </td>
+                                <td style="width: 5%;" class="text-center"> <?= number_format($proforma['iva'], 2, '.', ''); ?></td>
+                                <td style="width: 10%;" class="text-center"><?= number_format($proforma['total'], 2, '.', ''); ?></td>
+                            </tr>
+                    <?php  }
+                    } else {
+                        echo "<tr><td class='text-center' colspan='6'>" . __('No existen datos') . "</td></tr>";
+                    } ?>
+                </table>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-8">
+                        <form class="m-0 row justify-content-center" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+                            <input type='hidden' name='action' value='wrpro-imprimir-reporte'>
+                            <input type="hidden" name="fecha_inicio" id="fecha_inicio" value="<?= $fecha_inicio ?>">
+                            <input type="hidden" name="fecha_fin" id="fecha_fin" value="<?= $fecha_fin ?>">
+                            <button class="btn  btn-success "><?php _e("Imprimir") ?></button>
+                        </form>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="form-group row">
+                            <label for="" class="col-md-3 col-form-label text-md-right"><?php _e("Subtotal:") ?></label>
+                            <div class="col-md-8">
+                                <input type="text" value="<?= number_format($subtotal, 2, '.', '') ?>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-md-3 col-form-label text-md-right"><?php _e(" IVA:") ?></label>
+                            <div class="col-md-8">
+                                <input type="text" value="<?= number_format($total_iva, 2, '.', '') ?>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-md-3 col-form-label text-md-right"><?php _e(" TOTAL:") ?></label>
+                            <div class="col-md-8">
+                                <input type="text" value="<?= number_format($total, 2, '.', '') ?>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
