@@ -11,7 +11,7 @@ function wbct_menu_admin()
         plugin_dir_url(__FILE__) . '../static/imagenes/proforma.png',
         '8'
     );
-    add_submenu_page('wbct_menu', 'listProformas', 'Crear Cotizacion', 'wb_cotizacion', 'wrpro_menu_listproforma', 'wrpro_submenuProformas');
+    add_submenu_page('wbct_menu', 'listaCotizacion', 'Crear Cotizacion', 'wb_cotizacion', 'wbct_menu_cotizacion', 'wbctSubmenuProformas');
     add_submenu_page('wbct_menu', 'Cliente', 'Clientes', 'wb_cotizacion', 'wrpro_menu_clientes', 'wrpro_submenuCliente');
     add_submenu_page('wbct_menu', 'producto', 'Productos', 'wb_cotizacion', 'wrpro_menu_producto', 'wrpro_submenuProducto');
     add_submenu_page(null, 'reportes', 'reportes', 'wb_cotizacion', 'wrpro_menu_reportes', 'wrpro_submenuProformas_reportes');
@@ -24,16 +24,17 @@ function wrpro_submenuProformas_configuracion()
     $wrpro->wrpro_load_page("configuracion.phtml");
 }
 
-function wrpro_submenuProformas()
+function wbctSubmenuProformas()
 {
-    $wrpro = new WRPRO_AdminLoad_PageController();
-    $wrpro->wrpro_load_page("proforma.phtml");
+    
+    $load_page = new WBCT_LoadPageController();
+    $load_page->loadPage("cotizacion.php");
 }
 
 function wbct_subemnu_mostrarContenido()
 {
-    $wrpro = new WRPRO_AdminLoad_PageController();
-    $wrpro->wrpro_load_page("inicio.phtml");
+    $load_page = new WBCT_LoadPageController();
+    $load_page->loadPage("inicio.php");
 }
 function wrpro_submenuCliente()
 {

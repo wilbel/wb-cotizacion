@@ -1,6 +1,6 @@
 <?php
 
-class WRPRO_Operaciones_proforma extends WRPRO_database
+class WRPRO_Operaciones_proforma extends WBCT_database
 {
 
     function __construct()

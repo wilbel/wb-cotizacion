@@ -1,18 +1,18 @@
 <?php
 define('CANT_ITEMS_BY_PAGE', 10);
-$querys = new WRPRO_database();
+$querys = new WBCT_database();
 $dato_search = !empty($_POST["dato_search"]) ? $_POST["dato_search"] : '';
 $pagina = !empty($_POST["pagina"]) ? $_POST["pagina"] : 1;
 $limit = CANT_ITEMS_BY_PAGE;
 $offset = ($pagina - 1) * CANT_ITEMS_BY_PAGE;
 global $wpdb;
 $codigo = $_POST['codigo'];
-$conteo = $querys->wrpro_count_bd('wrpro_proforma', '');
+$conteo = $querys->wrpro_count_bd('wbct_cotizacion', '');
 $paginas = ceil($conteo / CANT_ITEMS_BY_PAGE);
-$datos_busquedad =  ' CONCAT(' . $wpdb->prefix . 'wrpro_proforma.id," ",fecha," ",subtotal," ",descuento," ",iva," ",subtotalall," ",total,' . $wpdb->prefix . 'wrpro_cliente.nom) LIKE "%' . $dato_search . '%"';
-$datos = $wpdb->prefix . 'wrpro_proforma.id,fecha ,subtotal,descuento, iva,subtotalall, total,' . $wpdb->prefix . 'wrpro_cliente.nom';
-$where =  ' WHERE ' . $datos_busquedad . ' AND ' . $wpdb->prefix . 'wrpro_proforma.id_cli= ' . $wpdb->prefix . 'wrpro_cliente.id  ORDER BY ' .  $wpdb->prefix . 'wrpro_proforma.id DESC LIMIT ' . $limit . ' OFFSET ' . $offset;
-$load_proformas = $querys->wrpro_tables_multiple('wrpro_proforma', 'wrpro_cliente', $datos, $where); ?>
+$datos_busquedad =  ' CONCAT(' . $wpdb->prefix . 'wbct_cotizacion.id," ",fecha," ",subtotal," ",descuento," ",iva," ",subtotalall," ",total,' . $wpdb->prefix . 'wbct_cliente.nombre) LIKE "%' . $dato_search . '%"';
+$datos = $wpdb->prefix . 'wbct_cotizacion.id,fecha ,subtotal,descuento, iva,subtotalall, total,' . $wpdb->prefix . 'wbct_cliente.nom';
+$where =  ' WHERE ' . $datos_busquedad . ' AND ' . $wpdb->prefix . 'wbct_cotizacion.id_cli= ' . $wpdb->prefix . 'wbct_cliente.id  ORDER BY ' .  $wpdb->prefix . 'wbct_cotizacion.id DESC LIMIT ' . $limit . ' OFFSET ' . $offset;
+$load_proformas = $querys->wrpro_tables_multiple('wbct_cotizacion', 'wbct_cliente', $datos, $where); ?>
 
 <div class="wr-table-responsive">
     <table class="table-responsive  table table-striped" style="font-size:12px;">
