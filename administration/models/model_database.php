@@ -1,39 +1,45 @@
 <?php
-class WRPRO_database
+class WBCT_database
 {
     private $wpdb_local;
-    const wrpro_tabla_cliente = "wrpro_cliente";
+    /* const wrpro_tabla_cliente = "wrpro_cliente";
     const wrpor_tabla_producto = "wrpro_producto";
     const wrpro_tabla_proforma = "wrpro_proforma";
     const wrpor_tabla_detalle = "wrpro_det_proforma";
+*/
+
     function __construct()
     {
         global $wpdb;
         $this->wpdb_local = $wpdb;
     }
-    public function wrpro_database()
+    public function wbct_createTable()
     {
         global $wpdb;
+        $charset_collate = $wpdb->get_charset_collate();
         //tabla clientes
-        $sql = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}wrpro_cliente(
+        $tableClientes = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}wbct_cliente(
             `id` int NOT NULL AUTO_INCREMENT,
-            `nom` text NOT NULL,
+            `nombre` text NOT NULL,
             `email` varchar(50) NOT NULL,
             `dni_ruc` varchar(13) NOT NULL,
-            `telf` varchar(12) NOT NULL,
-            `observ` text NOT NULL,
-            PRIMARY KEY (`id`));";
-        $wpdb->query($sql);
+            `telefono` varchar(12) NOT NULL,
+            `observacion` text NOT NULL,
+            PRIMARY KEY (`id`)
+            )$charset_collate;";
+
         //tabla productos
-        $sqlp = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}wrpro_producto(
+        $tableProductos = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}wbct_producto(
             `id` int(11) NOT NULL AUTO_INCREMENT,
-               `prod` text NOT NULL,
-               `descrip` text NOT NULL,
+               `producto` text NOT NULL,
+               `descripcion` text NOT NULL,
                `precio` double NOT NULL,
-           PRIMARY KEY (`id`));";
-        $wpdb->query($sqlp);
+           PRIMARY KEY (`id`)
+           )$charset_collate;";
+        dbDelta($tableProductos);
+
         //tabla proforma
-        $sqlprof = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}wrpro_proforma(
+        $tablaCotizacion = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}wbct_cotizacion(
             `id` int(11) NOT NULL AUTO_INCREMENT,
                `fecha` date NOT NULL,
                `fecha_fin` date NOT NULL,
@@ -44,22 +50,30 @@ class WRPRO_database
                `subtotalall` double NOT NULL,
                `total` double NOT NULL,
                `terminos_condiciones` text  NULL,
-                FOREIGN KEY (`id_cli`) REFERENCES {$wpdb->prefix}wrpro_cliente(`id`),
-                PRIMARY KEY (`id`));";
-        $wpdb->query($sqlprof);
+                FOREIGN KEY (`id_cli`) REFERENCES {$wpdb->prefix}wbct_cliente(`id`),
+                PRIMARY KEY (`id`)
+                )$charset_collate;";
+        dbDelta($tablaCotizacion);
+
         //tabla detalle proforma
-        $sqldet = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}wrpro_det_proforma(
+        $tablaDetalle = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}wbct_det_proforma(
                `id` int(11) NOT NULL AUTO_INCREMENT,
-               `id_prof` int(11) NOT NULL,
+               `id_cotizacion` int(11) NOT NULL,
                `cant_item` int(11) NOT NULL,
-               `cod_prod` int(11) NOT NULL,
+               `codigo_producto` int(11) NOT NULL,
                `prec_unit` double NOT NULL,
                `subtotal` double NOT NULL,
-               FOREIGN KEY (`id_prof`) REFERENCES {$wpdb->prefix}wrpro_proforma(`id`),
-               FOREIGN KEY (`cod_prod`) REFERENCES {$wpdb->prefix}wrpro_producto(`id`),
-               PRIMARY KEY (`id`));";
-        $wpdb->query($sqldet);
+               FOREIGN KEY (`id_cotizacion`) REFERENCES {$wpdb->prefix}wbct_proforma(`id`),
+               FOREIGN KEY (`codigo_producto`) REFERENCES {$wpdb->prefix}wbct_producto(`id`),
+               PRIMARY KEY (`id`)
+               )$charset_collate;";
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($tableClientes);
+        dbDelta($tableProductos);
+        dbDelta($tablaCotizacion);
+        dbDelta($tablaDetalle);
     }
+
     //registrar datos
     function wrpro_agregar_datos_bd($tabla, $datos)
     {
@@ -84,7 +98,7 @@ class WRPRO_database
         $tabla = $this->wpdb_local->prefix . $tabla;
         return $this->wpdb_local->get_results('SELECT * FROM ' . $tabla . '', ARRAY_A);
     }
-    function wrpro_listar_bd_id($tabla, $where="")
+    function wrpro_listar_bd_id($tabla, $where = "")
     {
         $tabla = $this->wpdb_local->prefix . $tabla;
         return $this->wpdb_local->get_results('SELECT * FROM ' . $tabla . ' ' . $where . ';');

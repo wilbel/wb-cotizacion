@@ -1,48 +1,45 @@
 <?php
 
 /**
- * Plugin Name: WR-Proformas 
- * Plugin URI: https://www.webrevolutionagency.com/
- * Description: Este plugin permite generar proformas 
- * Version: 1.8.4
- * Author: Web Revolution Milano
- * Author https://www.webrevolutionagency.com/
+ * Plugin Name: WR-Cotizacion 
+ * Plugin URI: https://www.wibcode.com/
+ * Description: Crear cotizaciones para las empresas, dando mejor servicio a los clientes.
+ * Version: 1.0.0
+ * Author: Wibcode
+ * Author https://www.wibcode.com/
  * License: GPL2
- * Text Domain: wr-Proforma
+ * Text Domain: wr-cotizacion
  * Domain Path: /languages
  */
 
-require_once dirname(__FILE__) . '/administration/models/wpro-bd.php'; //llamar a la clase base de datos
+require_once dirname(__FILE__) . '/administration/models/model_database.php'; //llamar a la clase base de datos
 
-function wrpro_activar()
+function wbct_activar()
 {
-    $basedatos = new WRPRO_database;
-    $basedatos->wrpro_database();
+    $basedatos = new WBCT_database();
+    $basedatos->wbct_createTable();
 }
 
+register_activation_hook(__FILE__, 'wbct_activar');
 //Aniadir rol y capacidad
-
-register_activation_hook(__FILE__, 'add_cliente_proforma_role');
-
 
 function add_cliente_proforma_role()
 {
-    remove_role('proformas_clientes');
+    remove_role('cotizacion_clientes');
     $role = get_role('administrator');
-    $role->add_cap('wr_proforma', true);
+    $role->add_cap('wb_cotizacion', true);
     add_role(
-        'proformas_clientes',
-        __('Proformas clientes', 'add-proformas-clientes-role'),
+        'cotizacion_clientes',
+        __('Cotizacion clientes', 'add-cotizacion-clientes-role'),
         array(
-            'wr_proforma' => true,
+            'wb_cotizacion' => true,
             'manage_options' => false,
             'read' => true
         )
     );
 }
 
-
-register_activation_hook(__FILE__, 'wrpro_activar');
+register_activation_hook(__FILE__, 'add_cliente_proforma_role');
 
 if (is_admin()) {
     require_once plugin_dir_path(__FILE__) . 'administration/controllers/wrpro_cargar_paginas.php';
@@ -60,10 +57,10 @@ if (is_admin()) {
     require_once plugin_dir_path(__FILE__) . 'library/fpdf/fpdf.php';
 }
 
-function wrpro_session()
+function wbct_session()
 {
     if (!session_id() && is_user_logged_in()) {
         session_start();
     }
 }
-add_action('init', 'wrpro_session', 1);
+add_action('init', 'wbct_session', 1);

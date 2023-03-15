@@ -1,5 +1,5 @@
 <?php
-class WRPRO_Operaciones_configuraciones extends WRPRO_database
+class WRPRO_Operaciones_configuraciones extends WBCT_database
 {
     function __construct()
     {
