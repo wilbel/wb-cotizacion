@@ -106,10 +106,9 @@ class WRPRO_Operaciones_proforma extends WBCT_database
         }
     }
     //Cargar maximo id de proformas
-    function wrpro_retorn_maximo_id_proforma()
+    function wrbct_retorn_maximo_id_cotizacion()
     {
-        $proximoId_proforma = $this->wrpro_maximo_id("wrpro_proforma", "id") + 1;
-        return $proximoId_proforma;
+        return $this->wbct_maximo_id("wbct_cotizacion", "id") + 1;
     }
     //Editar proforma
     private function wrpro_actualizar_proforma()
@@ -221,12 +220,15 @@ class WRPRO_Operaciones_proforma extends WBCT_database
     }
 
     //cargar terminos y condicioens 
-    function wrpro_cargar_terminos_condiciones()
+    function wbct_cargar_terminos_condiciones()
     {
+        return esc_attr(get_option('_wb_data_condiciones')['datos_condiciones']);
+
+        /*
         return   $descripcion_terminos_condiciones = preg_replace('/\<br(\s*)?\/?\>/i', "\n", "1. Al cliente se le cobrará después de aceptada esta cotización.
 2. Para empezar el trabajo se necesita la cancelación del 50% y el saldo restante al entregar el trabajo.
 3. Una vez emitida la factura dispone de 3 días laborables para emitir la retención.
-4. Al incumplir las condiciones se pierde la garantía de los trabajos.");
+4. Al incumplir las condiciones se pierde la garantía de los trabajos.");*/
     }
 
     //Cargar reportes 

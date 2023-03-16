@@ -39,7 +39,7 @@
                         <div class="form-group row" style="margin-bottom:8px">
                             <label class="col-md-3 col-form-label text-md-right"><?php _e("Dirección:") ?> </label>
                             <div class="col-md-8">
-                                <textarea name="observacion_cliente" class="form-control" rows="5" placeholder="Escriba aqui cualquier anotación referente al cliente"><?= $observa; ?></textarea>
+                                <textarea name="direccion_cliente" class="form-control" rows="5" placeholder="Dirección del cliente"><?= $observa; ?></textarea>
                             </div>
 
                         </div>
@@ -56,7 +56,7 @@
             <input type="hidden" id="nombre_pagina" value="clientes.php">
             <div class="wr-contenedor-search">
                 <div class="wr-input-wrapper">
-                    <input type="search" class="wr-input-notifica form-control" id="txt-search-notifica" name="txt-search-notifica" onkeyup="wrpro_buscar_informacion('','clientes.phtml');" placeholder="<?php _e('Cerca'); ?>">
+                    <input type="search" class="wr-input-notifica form-control" id="txt-search-notifica" name="txt-search-notifica" onkeyup="wbct_buscar_informacion('','clientes.php');" placeholder="<?php _e('Buscar'); ?>">
                     <i id="wr-input-icon" class="fas fa-search"></i>
                 </div>
             </div>

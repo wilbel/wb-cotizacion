@@ -5,11 +5,11 @@
         </div>
         <div class="card-body">
             <div class="borde-container">
-                <div class="card-header header-titulo">Datos del producto</div>
+                <div class="card-header header-titulo"> <?php _e('Datos del producto'); ?> </div>
                 <div class="card-body">
                     <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST">
                         <?php $this->wrpro_presenta_mensaje(); ?>
-                        <input type='hidden' name='action' value='wrpoc-post-producto'>
+                        <input type='hidden' name='action' value='wbct-oper-producto'>
                         <input type='hidden' name='crud' id="crud" value='<?= $aux ?>'>
                         <input type="hidden" value="<?= $id_producto ?>" name="id_producto" id="id_producto">
                         <div class="form-group row" style="margin-bottom:8px">
@@ -50,7 +50,7 @@
             <input type="hidden" id="nombre_pagina" value="producto.php">
             <div class="wr-contenedor-search">
                 <div class="wr-input-wrapper">
-                    <input type="search" class="wr-input-notifica form-control" id="txt-search-notifica" name="txt-search-notifica" onkeyup="wrpro_buscar_informacion('','producto.phtml');" placeholder="<?php _e('Cerca'); ?>">
+                    <input type="search" class="wr-input-notifica form-control" id="txt-search-notifica" name="txt-search-notifica" onkeyup="wbct_buscar_informacion('','producto.php');" placeholder="<?php _e('Cerca'); ?>">
                     <i id="wr-input-icon" class="fas fa-search"></i>
                 </div>
             </div>

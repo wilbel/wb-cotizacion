@@ -7,10 +7,10 @@ $limit = CANT_ITEMS_BY_PAGE;
 $offset = ($pagina - 1) * CANT_ITEMS_BY_PAGE;
 global $wpdb;
 $codigo = $_POST['codigo'];
-$conteo = $querys->wrpro_count_bd('wbct_producto', '');
+$conteo = $querys->wbct_count_bd('wbct_producto', '');
 $paginas = ceil($conteo / CANT_ITEMS_BY_PAGE); //cantidad de bloques
 $datos_busquedad =  ' CONCAT(' . $wpdb->prefix . 'wbct_producto.id," ",producto," ",descripcion," ",precio) LIKE "%' . $dato_search . '%"';
-$cargar_productos = $querys->wrpro_listar_bd_id('wbct_producto', ' WHERE ' . $datos_busquedad . ' ORDER BY producto DESC LIMIT ' . $limit . ' OFFSET ' . $offset); ?>
+$cargar_productos = $querys->wbct_listar_bd_id('wbct_producto', ' WHERE ' . $datos_busquedad . ' ORDER BY producto DESC LIMIT ' . $limit . ' OFFSET ' . $offset); ?>
 
 <table class="table-responsive table table-striped" id="iptable" style="font-size:12px;">
     <thead style="background-color:#D6DBDF ;color:black;font-weight: bold;">
@@ -38,7 +38,7 @@ $cargar_productos = $querys->wrpro_listar_bd_id('wbct_producto', ' WHERE ' . $da
                         </div>
                         <div class="form-group col-sm-5">
                             <form method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                                <input type='hidden' name='action' value='wrpoc-post-producto'>
+                                <input type='hidden' name='action' value='wbct-oper-producto'>
                                 <input type='hidden' name='crud' id="crud" value='remove'>
                                 <button class="btn btn-danger" style="font-size:1em;" name="eliminar_producto" value="<?= $value->id; ?>" onclick="return validarDelete();"><i class="fas fa-trash-alt"></i></button>
                             </form>
@@ -65,11 +65,11 @@ $end_loop = $start_loop + (CANT_ITEMS_BY_PAGE); ?>
 
         <ul class="wr-pagination">
             <li class="page-item">
-                <a onclick="wrpro_buscar_informacion('<?= 1; ?>','producto.phtml','<?= $codigo; ?>')">Inicio</a>
+                <a onclick="wbct_buscar_informacion('<?= 1; ?>','producto.php','<?= $codigo; ?>')">Inicio</a>
             </li>
             <?php if ($pagina > 1) { ?>
                 <li class="page-item">
-                    <a onclick="wrpro_buscar_informacion('<?php echo $pagina - 1 ?>','producto.phtml','<?= $codigo; ?>')">
+                    <a onclick="wbct_buscar_informacion('<?php echo $pagina - 1 ?>','producto.php','<?= $codigo; ?>')">
                         <span aria-hidden="true">
                             << </span>
                     </a>
@@ -78,19 +78,19 @@ $end_loop = $start_loop + (CANT_ITEMS_BY_PAGE); ?>
             <?php for ($i = $start_loop; $i <= $end_loop; $i++) { ?>
                 <?php if ($i > 0) { ?>
                     <li>
-                        <a class="<?php if ($i == $pagina) echo "wr-paginacion-active" ?>" onclick="wrpro_buscar_informacion('<?php echo $i ?>','producto.phtml','<?= $codigo; ?>')">
+                        <a class="<?php if ($i == $pagina) echo "wr-paginacion-active" ?>" onclick="wbct_buscar_informacion('<?php echo $i ?>','producto.php','<?= $codigo; ?>')">
                             <?php echo $i ?></a>
                     </li>
             <?php }
             } ?>
             <?php if ($pagina < $end_loop) {  ?>
                 <li>
-                    <a onclick="wrpro_buscar_informacion('<?php echo $pagina + 1 ?>','producto.phtml','<?= $codigo; ?>')">
+                    <a onclick="wbct_buscar_informacion('<?php echo $pagina + 1 ?>','producto.php','<?= $codigo; ?>')">
                         <span aria-hidden="true">>></span>
                     </a>
                 </li>
                 <li class="page-item">
-                    <a onclick="wrpro_buscar_informacion('<?= $paginas; ?>','producto.phtml','<?= $codigo; ?>')">Ultima</a>
+                    <a onclick="wbct_buscar_informacion('<?= $paginas; ?>','producto.php','<?= $codigo; ?>')">Ultima</a>
                 </li>
             <?php } ?>
         </ul>

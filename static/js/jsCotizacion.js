@@ -8,7 +8,7 @@ jQuery(function () {//autocompletar campos productos
 				url: url,
 				dataType: "json",
 				data: {
-					action: "wrpro_buscar_cliente",
+					action: "wbct_buscar_cliente",
 					nonce: SolicitudesAjax.seguridad,
 					term: request.term,
 				},

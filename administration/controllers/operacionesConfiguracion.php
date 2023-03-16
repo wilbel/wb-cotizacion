@@ -23,7 +23,7 @@ class WBCT_OperacionesConfiguraciones extends WBCT_database
     function wbct_configuracion_cotizacion()
     {
         if (isset($_POST["numeracion"]) && $_POST["numeracion"] == "numeracion_proforma") {
-            $this->agregarNumeracion(); //opcion numeracion de la proforma
+            $this->agregarNumeracion();
         } else if (isset($_POST["wb_configuracion"]) && $_POST["wb_configuracion"] == "configuracion_valores") {
             $this->wbct_save_iva();
         } else if (isset($_POST["wb_condiciones"]) && $_POST["wb_condiciones"] == "configuracion_condicion") {

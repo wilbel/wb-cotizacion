@@ -11,7 +11,7 @@ function wbct_menu_admin()
         plugin_dir_url(__FILE__) . '../static/imagenes/proforma.png',
         '8'
     );
-    add_submenu_page('wbct_menu', 'listaCotizacion', 'Crear Cotizacion', 'wb_cotizacion', 'wbct_menu_cotizacion', 'wbctSubmenuProformas');
+    add_submenu_page('wbct_menu', 'listaCotizacion', 'Crear Cotizacion', 'wb_cotizacion', 'wbct_menu_cotizacion', 'wbctSubmenuCotizacion');
     add_submenu_page('wbct_menu', 'Cliente', 'Clientes', 'wb_cotizacion', 'wbct_menu_clientes', 'wbct_submenuCliente');
     add_submenu_page('wbct_menu', 'producto', 'Productos', 'wb_cotizacion', 'wbct_menu_producto', 'wbct_submenuProducto');
     //  add_submenu_page(null, 'reportes', 'reportes', 'wb_cotizacion', 'wrpro_menu_reportes', 'wrpro_submenuProformas_reportes');
@@ -24,7 +24,7 @@ function wbct_submenuProformas_configuracion()
     $load_page->loadPage("configuracion.php");
 }
 
-function wbctSubmenuProformas()
+function wbctSubmenuCotizacion()
 {
     $load_page = new WBCT_LoadPageController();
     $load_page->loadPage("cotizacion.php");
@@ -56,16 +56,16 @@ function wbct_submenuProformas_reportes()
 add_action('admin_post_wrpoc-post-cliente', 'wrpoc_post_cliente');
 function wrpoc_post_cliente()
 {
-    $cliente = new WRPRO_Operaciones_clientes;
+    $cliente = new WBCT_OperacionesClientes;
     $cliente->wrpoc_admin_cliente();
 }
 
-add_action('admin_post_wrpoc-post-producto', 'wrpro_oper_producto');
+add_action('admin_post_wbct-oper-producto', 'wbct_operacionProducto');
 
-function wrpro_oper_producto()
+function wbct_operacionProducto()
 {
-    $producto = new WRPRO_Operaciones_producto;
-    $producto->wrpro_admin_producto();
+    $producto = new WBCT_OperacionesProducto();
+    $producto->wbct_admin_producto();
 }
 //Proforma
 add_action('admin_post_wrpro-pro-proforma', 'wrpro_post_proforma');
@@ -141,29 +141,29 @@ function wrpro_post_imprimir_proforma()
     $reporte->wrpro_admin_proforma($id_proforma);
 }
 //Buscar clientes
-function wrpro_buscar_cliente()
+function wbct_buscarCliente()
 {
     $nonce = $_POST['nonce'];
     if (!wp_verify_nonce($nonce, 'seg')) {
         die('no tiene permisos para ejecutar ese ajax');
     }
-    $sql_tablas = new WRPRO_database();
-    $cliente_autocomp = $sql_tablas->wrpro_cargar_datos_autocompletar("wrpro_cliente", "nom", ($_POST['term']));
+    $sql_tablas = new WBCT_database();
+    $cliente_autocomp = $sql_tablas->wbct_cargar_datos_autocompletar("wbct_cliente", "nombre", ($_POST['term']));
     $return_arr = array();
     foreach ($cliente_autocomp  as  $key => $row) {
         $id_cliente = $row['id'];
-        $row_array['value'] = $row['nom'];
+        $row_array['value'] = $row['nombre'];
         $row_array['id_cliente'] = $id_cliente;
         $row_array['email_cliente'] = $row['email'];
         $row_array['dni_ruc_cliente'] = $row['dni_ruc'];
-        $row_array['telefono_cliente'] = $row['telf'];
-        $row_array['direccion_cliente'] = $row['observ'];
+        $row_array['telefono_cliente'] = $row['telefono'];
+        $row_array['direccion_cliente'] = $row['direccion'];
         array_push($return_arr, $row_array);
     }
     wp_reset_postdata();
     wp_send_json($return_arr);
 }
-add_action('wp_ajax_wrpro_buscar_cliente', 'wrpro_buscar_cliente');
+add_action('wp_ajax_wbct_buscar_cliente', 'wbct_buscarCliente');
 //PAGINACION
 add_action('wp_ajax_wrpro_load_informacion', 'wrpro_load_informacion');
 function wrpro_load_informacion()

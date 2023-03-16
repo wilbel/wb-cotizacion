@@ -23,7 +23,7 @@
                         </div>
                         <div class="form-group col-lg-12 col-md-12 col-xs-12">
                             <label for="">Cotización N°: </label>
-                            <input class="form-control text-center" value="<?= $id_proforma; ?>" type="number" name="id_proforma" id="id_proforma" required readonly>
+                            <input class="form-control text-center" value="<?= $codigo_cotizacion; ?>" type="number" name="id_proforma" id="id_proforma" required readonly>
                         </div>
                         <div class="form-group col-lg-12 col-md-12 col-xs-12">
                             <label for="">Fecha(*): </label>

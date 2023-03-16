@@ -1,5 +1,5 @@
 /** Buscador */
-function wrpro_buscar_informacion(pagina, nombre_pagina, codigo) {
+function wbct_buscar_informacion(pagina, nombre_pagina, codigo) {
     var dato_search = document.getElementById("txt-search-notifica").value;
     (function ($) {
         var url = SolicitudesAjax.url;
@@ -33,8 +33,6 @@ function wrpro_buscar_informacion(pagina, nombre_pagina, codigo) {
 
 (function ($) {
     nombre_pagina = jQuery('#nombre_pagina').val();
-    // alert(nombre_pagina);
-    // codigo = jQuery('#codigo_dato').val();
-    wrpro_buscar_informacion(1, nombre_pagina, '');
+    wbct_buscar_informacion(1, nombre_pagina, '');
 })(jQuery);
 
