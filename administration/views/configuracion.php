@@ -14,7 +14,7 @@
                         <div class="card-header header-subtitulo"><?php _e('Iniciar numeración de proformas') ?> </div>
                         <div class="card-body">
                             <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST">
-                                <input type='hidden' name='action' value='wrpro_configuraciones'>
+                                <input type='hidden' name='action' value='wbct_configuraciones'>
                                 <input type='hidden' name='numeracion' id="numeracion" value='numeracion_proforma'>
                                 <div class="form-group row">
                                     <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Ingresar número para iniciar proformas:') ?> </label>
@@ -24,19 +24,18 @@
                                 </div>
                                 <div class="form-group row mb-0">
                                     <div class="col-md-3 offset-md-3">
-                                        <button type="submit" name="registrar" class="btn btn-success btn-block"> <i class="fas fa-save"></i> <?php _e('Aceptar') ?></button>
+                                        <button type="submit" name="registrar" class="btn btn-success btn-block"> <i class="fas fa-save"></i> <?php _e('Registrar') ?></button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-
                     <div class="borde-container">
                         <div class="card-header header-subtitulo"> <?php _e('IVA') ?></div>
                         <div class="card-body">
                             <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST">
-                                <input type='hidden' name='action' value='wrpro_configuraciones'>
-                                <input type='hidden' name='wr_configuracion' id="wr_configuracion" value='configuracion valores'>
+                                <input type='hidden' name='action' value='wbct_configuraciones'>
+                                <input type='hidden' name='wb_configuracion' id="wb_configuracion" value='configuracion_valores'>
                                 <div class="form-group row">
                                     <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Ingresar valor del IVA:') ?></label>
                                     <div class="col-md-8">
@@ -46,14 +45,34 @@
                                 </div>
                                 <div class="form-group row mb-0">
                                     <div class="col-md-3 offset-md-3">
-                                        <button type="submit" name="registrar" class="btn btn-success btn-block"> <i class="fas fa-save"></i> <?php _e('Aceptar') ?> </button>
+                                        <button type="submit" name="registrar" class="btn btn-success btn-block"> <i class="fas fa-save"></i> <?php _e('Registrar') ?> </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="borde-container">
+                        <div class="card-header header-subtitulo"> <?php _e('Condiciones') ?></div>
+                        <div class="card-body">
+                            <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST">
+                                <input type='hidden' name='action' value='wbct_configuraciones'>
+                                <input type='hidden' name='wb_condiciones' id="wb_condiciones" value='configuracion_condicion'>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Ingresar las politicas:') ?></label>
+                                    <div class="col-md-8" style="margin-bottom: 8px;">
+                                        <textarea class="form-control" name="condiciones" id="condiciones" cols="" rows="4" placeholder="Ingresar condiciones"><?=$terminos_condiciones;?></textarea>
+                                        <small><?php _e('Ejm: 1. Se necesita el pago del 50%.'); ?></small>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-0" >
+                                    <div class="col-md-3 offset-md-3">
+                                        <button type="submit" name="registrar" class="btn btn-success btn-block"> <i class="fas fa-save"></i> <?php _e('Registrar') ?> </button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-sm-6 ">
                     <p style="font-size: 1em;">
                         <?php printf('En una empresa, las cotizaciones son importantes  porque ayudan con el detalle de los precios y los términos de una transacción propuesta. Por lo general, se utiliza en el contexto de una empresa o negocio que ofrece productos o servicios a sus clientes.') ?>

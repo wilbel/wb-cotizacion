@@ -23,14 +23,13 @@ class WBCT_LoadPageController
             array('jquery')
         );
 
-
-
-
-        if ($page == "clientes.phtml") {
-            $operaciones_clientes = new WRPRO_Operaciones_clientes();
+        if ($page == "clientes.php") {
+            $operaciones_clientes = new WBCT_OperacionesClientes();
             $aux = isset($_POST['codigo_cliente']) ? "update" : "add";
             $actiu = isset($_POST['codigo_cliente']) ? "block" : "none";
             $actig = isset($_POST['codigo_cliente']) ? "none" : null;
+
+
             if (isset($_POST['codigo_cliente'])) {
                 $buscar_cliente =  $operaciones_clientes->wr_pro_load_clientes($_POST['codigo_cliente']);
                 foreach ($buscar_cliente as $value) {
@@ -42,9 +41,10 @@ class WBCT_LoadPageController
                     $observa = $value->observ;
                 }
             }
+
             wp_enqueue_script(
-                'wpro_js_interno',
-                plugins_url('../../static/js/wrpro_validation.js', __FILE__),
+                'wbct_js_interno',
+                plugins_url('../../static/js/validation.js', __FILE__),
                 array('jquery')
             );
             wp_enqueue_script(
@@ -53,12 +53,12 @@ class WBCT_LoadPageController
                 array('jquery')
             );
             wp_enqueue_script(
-                'wpro_js_paginacion',
-                plugins_url('../../static/js/wrpro_paginacion.js', __FILE__),
+                'wbct_js_paginacion',
+                plugins_url('../../static/js/paginacion.js', __FILE__),
                 array('jquery')
             );
             wp_localize_script(
-                'wpro_js_paginacion',
+                'wbct_js_paginacion',
                 'SolicitudesAjax',
                 [
                     'url' => admin_url('admin-ajax.php'), 'seguridad' => wp_create_nonce('seg')
@@ -67,11 +67,8 @@ class WBCT_LoadPageController
         } else if ($page == "cotizacion.php") {
 
 
-           
-        $valor_iva = !empty(esc_attr(get_option('_wb_data_iva')['valor_iva']) )? esc_attr(get_option('_wb_data_iva')['valor_iva']):"0";
 
-  
-
+            $valor_iva = !empty(esc_attr(get_option('_wb_data_iva')['valor_iva'])) ? esc_attr(get_option('_wb_data_iva')['valor_iva']) : "0";
             $load_id_proforma = new WRPRO_Operaciones_proforma();
 
             $fecha__fin_proforma =  date('Y-m-d', strtotime(date("d-m-Y") . ' + 5 days'));
@@ -101,7 +98,7 @@ class WBCT_LoadPageController
                 $load_proforma = $wrpro_load_datos->wrpro_buscar_proforma_id("wbct_cotizacion", $id_proforma);
                 foreach ($load_proforma  as  $key => $row) {
                     $id_proforma = $row['id'];
-                   
+
                     $id_cliente = $row['id_cliente'];
                     $subtotal_proforma =  $row['subtotal'];
                     $decuento = $row['descuento'];
@@ -146,7 +143,7 @@ class WBCT_LoadPageController
                 plugins_url('../../static/plugins/jquery-ui/jquery-ui.js', __FILE__),
                 array('jquery')
             );
-        } else if ($page == "producto.phtml") {
+        } else if ($page == "producto.php") {
             $boton_editar = "none";
             $boton_registrar = "block";
             $aux = "add";
@@ -166,8 +163,8 @@ class WBCT_LoadPageController
             }
 
             wp_enqueue_script(
-                'wpro_js_interno',
-                plugins_url('../../static/js/wrpro_validation.js', __FILE__),
+                'wbctJSinterno',
+                plugins_url('../../static/js/validation.js', __FILE__),
                 array('jquery')
             );
             wp_enqueue_script(
@@ -176,12 +173,12 @@ class WBCT_LoadPageController
                 array('jquery')
             );
             wp_enqueue_script(
-                'wpro_js_paginacion',
-                plugins_url('../../static/js/wrpro_paginacion.js', __FILE__),
+                'wbct_js_paginacion',
+                plugins_url('../../static/js/paginacion.js', __FILE__),
                 array('jquery')
             );
             wp_localize_script(
-                'wpro_js_paginacion',
+                'wbct_js_paginacion',
                 'SolicitudesAjax',
                 [
                     'url' => admin_url('admin-ajax.php'), 'seguridad' => wp_create_nonce('seg')
@@ -214,21 +211,15 @@ class WBCT_LoadPageController
                     'url' => admin_url('admin-ajax.php'), 'seguridad' => wp_create_nonce('seg')
                 ]
             );
-          
-        } else if ($page == "configuracion.phtml") {
+        } else if ($page == "configuracion.php") {
             wp_enqueue_script(
                 'wbcotizacion_booststrap_js',
                 plugins_url('../../static/plugins/bootstrap/js/bootstrap.min.js', __FILE__),
                 array('jquery')
             );
 
-          //  $valor_iva =  (!empty(esc_attr(get_option('_wrpro_valores_data')['valor_iva']))) ?  esc_attr(get_option('_wrpro_valores_data')['valor_iva']) : '0.12';
-      
+            $terminos_condiciones = esc_attr(get_option('_wb_data_condiciones')['datos_condiciones']);
             $valor_iva =  esc_attr(get_option('_wb_data_iva')['valor_iva']);
-      
-      
-            
-      
         } else if ($page == "reportes.phtml") {
             $fecha_inicio = isset($_POST['txt_date_inicio']) ? $_POST['txt_date_inicio'] : date("Y-m-d");
             $fecha_fin = isset($_POST['txt_date_fin']) ? $_POST['txt_date_fin'] : date("Y-m-d");

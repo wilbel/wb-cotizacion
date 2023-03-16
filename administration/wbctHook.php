@@ -12,21 +12,20 @@ function wbct_menu_admin()
         '8'
     );
     add_submenu_page('wbct_menu', 'listaCotizacion', 'Crear Cotizacion', 'wb_cotizacion', 'wbct_menu_cotizacion', 'wbctSubmenuProformas');
-    add_submenu_page('wbct_menu', 'Cliente', 'Clientes', 'wb_cotizacion', 'wrpro_menu_clientes', 'wrpro_submenuCliente');
-    add_submenu_page('wbct_menu', 'producto', 'Productos', 'wb_cotizacion', 'wrpro_menu_producto', 'wrpro_submenuProducto');
-    add_submenu_page(null, 'reportes', 'reportes', 'wb_cotizacion', 'wrpro_menu_reportes', 'wrpro_submenuProformas_reportes');
+    add_submenu_page('wbct_menu', 'Cliente', 'Clientes', 'wb_cotizacion', 'wbct_menu_clientes', 'wbct_submenuCliente');
+    add_submenu_page('wbct_menu', 'producto', 'Productos', 'wb_cotizacion', 'wbct_menu_producto', 'wbct_submenuProducto');
+    //  add_submenu_page(null, 'reportes', 'reportes', 'wb_cotizacion', 'wrpro_menu_reportes', 'wrpro_submenuProformas_reportes');
     add_submenu_page('wbct_menu', 'Configuracion', 'Configuración', 'wb_cotizacion', 'wbct_menu_configuracion', 'wbct_submenuProformas_configuracion');
 }
 //configuraciones
 function wbct_submenuProformas_configuracion()
 {
-    $wrpro = new WBCT_LoadPageController();
-    $wrpro->loadPage("configuracion.phtml");
+    $load_page = new WBCT_LoadPageController();
+    $load_page->loadPage("configuracion.php");
 }
 
 function wbctSubmenuProformas()
 {
-    
     $load_page = new WBCT_LoadPageController();
     $load_page->loadPage("cotizacion.php");
 }
@@ -36,22 +35,22 @@ function wbct_subemnu_mostrarContenido()
     $load_page = new WBCT_LoadPageController();
     $load_page->loadPage("inicio.php");
 }
-function wrpro_submenuCliente()
+function wbct_submenuCliente()
 {
-    $wrpro = new WRPRO_AdminLoad_PageController();
-    $wrpro->wrpro_load_page("clientes.phtml");
+    $load_page = new WBCT_LoadPageController();
+    $load_page->loadPage("clientes.php");
 }
 
-function wrpro_submenuProducto()
+function wbct_submenuProducto()
 {
-    $wrpro = new WRPRO_AdminLoad_PageController();
-    $wrpro->wrpro_load_page("producto.phtml");
+    $load_page = new WBCT_LoadPageController();
+    $load_page->loadPage("producto.php");
 }
 
-function wrpro_submenuProformas_reportes()
+function wbct_submenuProformas_reportes()
 {
-    $wrpro = new WRPRO_AdminLoad_PageController();
-    $wrpro->wrpro_load_page("reportes.phtml");
+    $load_page = new WBCT_LoadPageController();
+    $load_page->loadPage("reportes.php");
 }
 //Registrar Clientes
 add_action('admin_post_wrpoc-post-cliente', 'wrpoc_post_cliente');
@@ -85,11 +84,11 @@ function wrpro_post_imprimir_reporte()
     $reporte->wrpro_admin_reportes($fecha_inicio, $fecha_fin);
 }
 //Configuraciones de iva y descuento
-add_action('admin_post_wrpro_configuraciones', 'wrpro_configuraciones');
-function wrpro_configuraciones()
+add_action('admin_post_wbct_configuraciones', 'wbctConfiguraciones');
+function wbctConfiguraciones()
 {
-    $configuraciones = new WRPRO_Operaciones_configuraciones();
-    $configuraciones->wrpro_configuracion_proforma();
+    $configuraciones = new WBCT_OperacionesConfiguraciones();
+    $configuraciones->wbct_configuracion_cotizacion();
 }
 
 //registrar producto
@@ -174,12 +173,12 @@ function wrpro_load_informacion()
         die('no tiene permisos para ejecutar ese ajax');
     }
     $nombre_pagina = ($_POST["nombre_pagina"]);
-    if ($nombre_pagina == 'inicio.phtml') {
-        require_once plugin_dir_path(__FILE__) . 'paginacion/paginacion_proformas.phtml';
-    } else if ($nombre_pagina == 'producto.phtml') {
-        require_once plugin_dir_path(__FILE__) . 'paginacion/paginacion_productos.phtml';
-    } else if ($nombre_pagina == 'clientes.phtml') {
-        require_once plugin_dir_path(__FILE__) . 'paginacion/paginacion_clientes.phtml';
+    if ($nombre_pagina == 'inicio.php') {
+        require_once plugin_dir_path(__FILE__) . 'paginacion/paginacion_cotizaciones.php';
+    } else if ($nombre_pagina == 'producto.php') {
+        require_once plugin_dir_path(__FILE__) . 'paginacion/paginacion_productos.php';
+    } else if ($nombre_pagina == 'clientes.php') {
+        require_once plugin_dir_path(__FILE__) . 'paginacion/paginacion_clientes.php';
     }
     wp_die();
 }

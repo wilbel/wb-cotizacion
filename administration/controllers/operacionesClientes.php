@@ -1,6 +1,6 @@
 <?php
 
-class WRPRO_Operaciones_clientes extends WRPRO_database
+class WBCT_OperacionesClientes extends WBCT_database
 {
     function __construct()
     {
@@ -19,8 +19,8 @@ class WRPRO_Operaciones_clientes extends WRPRO_database
                 'id' => null, 'nom' => $nombre_cliente,
                 'email' => $email_cliente,
                 'dni_ruc' => $ruc_cliente,
-                'telf' => $telf_cliente,
-                'observ' => $observacion_cliente
+                'telefono' => $telf_cliente,
+                'observacion' => $observacion_cliente
             ];
             $bandera =  $this->wrpro_agregar_datos_bd("wrpro_cliente", $datos);
             if ($bandera) {

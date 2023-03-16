@@ -45,13 +45,15 @@ if (is_admin()) {
     
     require_once plugin_dir_path(__FILE__) . 'administration/controllers/loadPages.php';
     require_once plugin_dir_path(__FILE__) . 'administration/wbctHook.php';
-   /* require_once plugin_dir_path(__FILE__) . 'administration/controllers/wrpro-oper_clientes.php';
-    require_once plugin_dir_path(__FILE__) . 'administration/controllers/wrpro-oper_productos.php';*/
-    require_once plugin_dir_path(__FILE__) . 'administration/controllers/wrpro-oper_proforma.php';
+    require_once plugin_dir_path(__FILE__) . 'administration/controllers/operacionesClientes.php';
+    require_once plugin_dir_path(__FILE__) . 'administration/controllers/operacionesProductos.php';
+
+    require_once plugin_dir_path(__FILE__) . 'administration/controllers/operacionCotizacion.php';
+    
    /* require_once plugin_dir_path(__FILE__) . 'administration/controllers/wrpro_rep_proforma.php';
     require_once plugin_dir_path(__FILE__) . 'administration/controllers/wrpro_reportes_fechas.php';*/
 
-    require_once plugin_dir_path(__FILE__) . 'administration/controllers/Configuracion.php';
+    require_once plugin_dir_path(__FILE__) . 'administration/controllers/operacionesConfiguracion.php';
    // require_once plugin_dir_path(__FILE__) . 'library/fpdf/fpdf.php';
 }
 

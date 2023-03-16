@@ -112,7 +112,7 @@ class WBCT_database
         return   $resultado[0]['id'];
     }
     //Redireccionar paginas
-    final function wrpro_admin_redireccionamiento($argumento = "")
+    final function wbct_admin_redireccionamiento($argumento = "")
     {
         ob_start();
         $url_redirect = (empty(admin_url()) ? network_admin_url($argumento) : admin_url($argumento));
@@ -120,7 +120,7 @@ class WBCT_database
         exit;
     }
 
-    final function wrpro_envia_mensaje($mensaje, $status)
+    final function wbctEnviaMensaje($mensaje, $status)
     {
         $_SESSION["wrpro_mensaje"] = array('response' => $mensaje, 'status' => $status);
     }
@@ -146,7 +146,7 @@ class WBCT_database
         return  $this->wpdb_local->get_results($sql);
     }
     //numracion de la proforma
-    function  wrpro_agregar_numeracion_proforma($tabla, $datos)
+    function  wbct_agregar_numeracion_cotizacion($tabla, $datos)
     {
         $tabla_proforma  = $this->wpdb_local->prefix . $tabla;
         $sql_autoincrementable = " ALTER TABLE $tabla_proforma AUTO_INCREMENT = $datos";

@@ -20,22 +20,11 @@ form {
 }
 
 
-
-
 .row {
     margin-right: 0px;
     margin-left: 0px;
     margin-bottom: 0px;
 }
-
-
-
-/*
-html,
-body {
-	background-color: #00aeef;
-	background-image: none;
-}*/
 
 .header-titulo{
     background: #abdfbe;
@@ -55,6 +44,10 @@ body {
     border-color: #bde7df;
 }
 
+textarea.form-control{
+    height: 6em;
+}
+
 .form-control {
 	display: block;
 	width: 100%;
@@ -69,7 +62,6 @@ body {
 	border: 1px solid #ced4da;
 	border-radius: .00rem;
 	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-	/*border-radius: 25px 25px 25px 25px !important;*/
 }
 
 .contenedor-principal {
