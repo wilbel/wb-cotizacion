@@ -15,13 +15,13 @@ function wbct_menu_admin()
     add_submenu_page('wbct_menu', 'Cliente', 'Clientes', 'wb_cotizacion', 'wrpro_menu_clientes', 'wrpro_submenuCliente');
     add_submenu_page('wbct_menu', 'producto', 'Productos', 'wb_cotizacion', 'wrpro_menu_producto', 'wrpro_submenuProducto');
     add_submenu_page(null, 'reportes', 'reportes', 'wb_cotizacion', 'wrpro_menu_reportes', 'wrpro_submenuProformas_reportes');
-    add_submenu_page('wbct_menu', 'Configuracion', 'Configuración', 'wb_cotizacion', 'wrpro_menu_configuracion', 'wrpro_submenuProformas_configuracion');
+    add_submenu_page('wbct_menu', 'Configuracion', 'Configuración', 'wb_cotizacion', 'wbct_menu_configuracion', 'wbct_submenuProformas_configuracion');
 }
 //configuraciones
-function wrpro_submenuProformas_configuracion()
+function wbct_submenuProformas_configuracion()
 {
-    $wrpro = new WRPRO_AdminLoad_PageController();
-    $wrpro->wrpro_load_page("configuracion.phtml");
+    $wrpro = new WBCT_LoadPageController();
+    $wrpro->loadPage("configuracion.phtml");
 }
 
 function wbctSubmenuProformas()

@@ -68,7 +68,7 @@ class WBCT_LoadPageController
 
 
            
-        $valor_iva = !empty(esc_attr(get_option('_wrpro_valores_data')['valor_iva']) )? esc_attr(get_option('_wrpro_valores_data')['valor_iva']):"0";
+        $valor_iva = !empty(esc_attr(get_option('_wb_data_iva')['valor_iva']) )? esc_attr(get_option('_wb_data_iva')['valor_iva']):"0";
 
   
 
@@ -224,10 +224,10 @@ class WBCT_LoadPageController
 
           //  $valor_iva =  (!empty(esc_attr(get_option('_wrpro_valores_data')['valor_iva']))) ?  esc_attr(get_option('_wrpro_valores_data')['valor_iva']) : '0.12';
       
-            $valor_iva =  esc_attr(get_option('_wrpro_valores_data')['valor_iva']);
+            $valor_iva =  esc_attr(get_option('_wb_data_iva')['valor_iva']);
       
       
-      
+            
       
         } else if ($page == "reportes.phtml") {
             $fecha_inicio = isset($_POST['txt_date_inicio']) ? $_POST['txt_date_inicio'] : date("Y-m-d");
