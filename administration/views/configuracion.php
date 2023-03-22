@@ -60,11 +60,11 @@
                                 <div class="form-group row">
                                     <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Ingresar las politicas:') ?></label>
                                     <div class="col-md-8" style="margin-bottom: 8px;">
-                                        <textarea class="form-control" name="condiciones" id="condiciones" cols="" rows="4" placeholder="Ingresar condiciones"><?=$terminos_condiciones;?></textarea>
+                                        <textarea class="form-control" name="condiciones" id="condiciones" cols="" rows="4" placeholder="Ingresar condiciones"><?= $terminos_condiciones; ?></textarea>
                                         <small><?php _e('Ejm: 1. Se necesita el pago del 50%.'); ?></small>
                                     </div>
                                 </div>
-                                <div class="form-group row mb-0" >
+                                <div class="form-group row mb-0">
                                     <div class="col-md-3 offset-md-3">
                                         <button type="submit" name="registrar" class="btn btn-success btn-block"> <i class="fas fa-save"></i> <?php _e('Registrar') ?> </button>
                                     </div>
@@ -78,10 +78,32 @@
                         <?php printf('En una empresa, las cotizaciones son importantes  porque ayudan con el detalle de los precios y los términos de una transacción propuesta. Por lo general, se utiliza en el contexto de una empresa o negocio que ofrece productos o servicios a sus clientes.') ?>
                     </p>
                     <hr style="border: 2px solid #b8ebe0;">
-                    <div class="text-center">
-                        <span style="color:#abdfbe;font-size:20em;">
-                            <i class="fas fa-file-invoice-dollar"></i>
-                        </span>
+                    <div class="borde-container">
+                        <div class="card-header header-subtitulo"> <?php _e('Logo') ?></div>
+                        <div class="card-body">
+                            <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST">
+                                <input type='hidden' name='action' value='wbct_configuraciones'>
+                                <input type='hidden' name='wb_logo' id="wb_logo" value='configuracion_logo'>
+
+
+                                <div class="wbct-box-imagenes">
+                                    <div class="wbct-load-foto">
+                                    <img src="<?=$url_imagen?>" style="max-width:360px" />
+                                    </div>
+                                </div>
+
+                                <div class="text-center" style="margin:10px">
+                                    <button class="btn btn-success" type="reset" id="btnimagen" onclick="wbct_load_logo()"> <i class="far fa-image"></i> <?php _e("Imagen") ?> </button>
+
+                                </div>
+
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-3 offset-md-3">
+                                        <button type="submit" name="registrar" class="btn btn-success btn-block"> <i class="fas fa-save"></i> <?php _e('Cargar') ?> </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

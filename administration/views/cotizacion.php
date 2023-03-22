@@ -87,8 +87,8 @@
                     $cont = 0;
                     if (isset($_GET['id'])) {
                         foreach ($load_det_proforma  as  $key => $row) {
-                            $nombre_producto = $wrpro_load_datos->wrpro_retornar_nombre_producto("wrpro_producto", $row->cod_prod);
-                            $descripcion_producto = $wrpro_load_datos->wrpro_retornar_descripcion_producto("wrpro_producto", $row->cod_prod); ?>
+                            $nombre_producto = $wrpro_load_datos->wbct_retornar_nombre_producto("wbct_producto", $row->codigo_producto);
+                            $descripcion_producto = $wrpro_load_datos->wbct_retornar_descripcion_producto("wbct_producto", $row->codigo_producto); ?>
                             <tr class="filas" id="fila<?= $key ?>">
                                 <td style="width: 2%;"><span step="2" id="numeracion" name="numeracion"><?= $key + 1; ?></span> </td>
                                 <td style="width: 5%;"><input onchange="modificarSubtotales()" style="width: 100%;" min="1" type="number" name="cantidad[]" id="cantidad[]" value="<?= $row->cant_item; ?>"></td>

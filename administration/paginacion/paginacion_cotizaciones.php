@@ -7,12 +7,12 @@ $limit = CANT_ITEMS_BY_PAGE;
 $offset = ($pagina - 1) * CANT_ITEMS_BY_PAGE;
 global $wpdb;
 $codigo = $_POST['codigo'];
-$conteo = $querys->wrpro_count_bd('wbct_cotizacion', '');
+$conteo = $querys->wbct_count_bd('wbct_cotizacion', '');
 $paginas = ceil($conteo / CANT_ITEMS_BY_PAGE);
 $datos_busquedad =  ' CONCAT(' . $wpdb->prefix . 'wbct_cotizacion.id," ",fecha," ",subtotal," ",descuento," ",iva," ",subtotalall," ",total,' . $wpdb->prefix . 'wbct_cliente.nombre) LIKE "%' . $dato_search . '%"';
-$datos = $wpdb->prefix . 'wbct_cotizacion.id,fecha ,subtotal,descuento, iva,subtotalall, total,' . $wpdb->prefix . 'wbct_cliente.nom';
+$datos = $wpdb->prefix . 'wbct_cotizacion.id,fecha ,subtotal,descuento, iva,subtotalall, total,' . $wpdb->prefix . 'wbct_cliente.nombre';
 $where =  ' WHERE ' . $datos_busquedad . ' AND ' . $wpdb->prefix . 'wbct_cotizacion.id_cli= ' . $wpdb->prefix . 'wbct_cliente.id  ORDER BY ' .  $wpdb->prefix . 'wbct_cotizacion.id DESC LIMIT ' . $limit . ' OFFSET ' . $offset;
-$load_proformas = $querys->wrpro_tables_multiple('wbct_cotizacion', 'wbct_cliente', $datos, $where); ?>
+$load_proformas = $querys->wbct_tables_multiple('wbct_cotizacion', 'wbct_cliente', $datos, $where); ?>
 
 <table class="table-responsive  table table-striped" style="font-size:12px;">
     <thead style="background-color:#f7f7f7 ;color:#000000;font-weight: bold;">
@@ -32,7 +32,7 @@ $load_proformas = $querys->wrpro_tables_multiple('wbct_cotizacion', 'wbct_client
         foreach ($load_proformas as  $key => $proforma) { ?>
             <tr style="color:black;font-size:14px;">
                 <td class="text-center"><?= $proforma->id;  ?></td>
-                <td class="text-center"> <?= $proforma->nom;  ?> </td>
+                <td class="text-center"> <?= $proforma->nombre;  ?> </td>
                 <td class="text-center"> <?= $proforma->fecha; ?> </td>
                 <td class="text-center"> <?= number_format($proforma->subtotal, 2, '.', ''); ?> </td>
                 <td class="text-center"> <?= number_format($proforma->descuento, 2, '.', ''); ?> </td>
@@ -89,11 +89,11 @@ $end_loop = $start_loop + (CANT_ITEMS_BY_PAGE); ?>
 
         <ul class="wr-pagination">
             <li class="page-item">
-                <a onclick="wrpro_buscar_informacion('<?= 1; ?>','inicio.phtml','<?= $codigo; ?>')">Inicio</a>
+                <a onclick="wbct_buscar_informacion('<?= 1; ?>','inicio.php','<?= $codigo; ?>')">Inicio</a>
             </li>
             <?php if ($pagina > 1) { ?>
                 <li class="page-item">
-                    <a onclick="wrpro_buscar_informacion('<?php echo $pagina - 1 ?>','inicio.phtml','<?= $codigo; ?>')">
+                    <a onclick="wbct_buscar_informacion('<?php echo $pagina - 1 ?>','inicio.php','<?= $codigo; ?>')">
                         <span aria-hidden="true">
                             << </span>
                     </a>
@@ -102,19 +102,19 @@ $end_loop = $start_loop + (CANT_ITEMS_BY_PAGE); ?>
             <?php for ($i = $start_loop; $i <= $end_loop; $i++) { ?>
                 <?php if ($i > 0) { ?>
                     <li>
-                        <a class="<?php if ($i == $pagina) echo "wr-paginacion-active" ?>" onclick="wrpro_buscar_informacion('<?php echo $i ?>','inicio.phtml','<?= $codigo; ?>')">
+                        <a class="<?php if ($i == $pagina) echo "wr-paginacion-active" ?>" onclick="wbct_buscar_informacion('<?php echo $i ?>','inicio.php','<?= $codigo; ?>')">
                             <?php echo $i ?></a>
                     </li>
             <?php }
             } ?>
             <?php if ($pagina < $end_loop) {  ?>
                 <li>
-                    <a onclick="wrpro_buscar_informacion('<?php echo $pagina + 1 ?>','inicio.phtml','<?= $codigo; ?>')">
+                    <a onclick="wbct_buscar_informacion('<?php echo $pagina + 1 ?>','inicio.php','<?= $codigo; ?>')">
                         <span aria-hidden="true">>></span>
                     </a>
                 </li>
                 <li class="page-item">
-                    <a onclick="wrpro_buscar_informacion('<?= $paginas; ?>','inicio.phtml','<?= $codigo; ?>')">Ultima</a>
+                    <a onclick="wbct_buscar_informacion('<?= $paginas; ?>','inicio.php','<?= $codigo; ?>')">Ultima</a>
                 </li>
             <?php } ?>
         </ul>

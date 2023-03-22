@@ -23,6 +23,8 @@ class WBCT_LoadPageController
             array('jquery')
         );
 
+
+
         if ($page == "clientes.php") {
             $operaciones_clientes = new WBCT_OperacionesClientes();
             $aux = isset($_POST['codigo_cliente']) ? "update" : "add";
@@ -93,10 +95,10 @@ class WBCT_LoadPageController
                 $id_proforma = $_GET['id'];
                 $wrpro_load_datos = new  WBCT_database();
                 $load_proforma = $wrpro_load_datos->wbct_buscar_proforma_id("wbct_cotizacion", $id_proforma);
-                foreach ($load_proforma  as  $key => $row) {
-                    $id_proforma = $row['id'];
 
-                    $id_cliente = $row['id_cliente'];
+                foreach ($load_proforma  as  $key => $row) {
+                    $codigo_cotizacion = $row['id'];
+                    $id_cliente = $row['id_cli'];
                     $subtotal_proforma =  $row['subtotal'];
                     $decuento = $row['descuento'];
                     $subtotal_desc = $row['subtotalall'];
@@ -112,9 +114,11 @@ class WBCT_LoadPageController
                     $email_cliente  = $row['email'];
                     $dni_ruc_cliente   = $row['dni_ruc'];
                     $telf_cliente    = $row['telefono'];
-                    $observ_cliente   = $row['observacion'];
+                    $observ_cliente   = $row['direccion'];
                 }
-                $load_det_proforma = $wrpro_load_datos->wbct_buscar_detalle_id("wbct_det_proforma",  $_GET['id']);
+
+                $load_det_proforma = $wrpro_load_datos->wbct_buscar_detalle_id("wbct_detalle_cotizacion",  $_GET['id']);
+
             } else {
                 $mensaje = "Generar Proforma";
                 $ocultar_cancelar_save = "block";
@@ -208,6 +212,8 @@ class WBCT_LoadPageController
                     'url' => admin_url('admin-ajax.php'), 'seguridad' => wp_create_nonce('seg')
                 ]
             );
+
+            $url_imagen = esc_attr(get_option('_wb_data_imagen')['wbct_logo']);
         } else if ($page == "configuracion.php") {
             wp_enqueue_script(
                 'wbcotizacion_booststrap_js',
@@ -215,6 +221,13 @@ class WBCT_LoadPageController
                 array('jquery')
             );
 
+            wp_enqueue_script(
+                'wbcotizaconJSimagen',
+                plugins_url('../../static/js/jsimagen.js', __FILE__),
+                array('jquery')
+            );
+
+            $url_imagen = esc_attr(get_option('_wb_data_imagen')['wbct_logo']);
             $terminos_condiciones = esc_attr(get_option('_wb_data_condiciones')['datos_condiciones']);
             $valor_iva =  esc_attr(get_option('_wb_data_iva')['valor_iva']);
         } else if ($page == "reportes.phtml") {

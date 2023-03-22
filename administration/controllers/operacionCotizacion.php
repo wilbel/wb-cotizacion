@@ -15,7 +15,7 @@ class WRPRO_Operaciones_proforma extends WBCT_database
             $codigo_cliente = $this->wrpro_Save_cliente();
         }
 
-        $this->wrpro_query_bd('START TRANSACTION'); //COMIEZA TRANSACCION 
+        $this->wbct_query_bd('START TRANSACTION'); //COMIEZA TRANSACCION 
 
         if (!($_POST['total_all']) == 0) {
             $fecha_proforma = sanitize_text_field($_POST['fecha_ini']);
@@ -37,31 +37,31 @@ class WRPRO_Operaciones_proforma extends WBCT_database
             $descripcion_producto = ($_POST['descrip_prod']);
             //Insertar proforma
             $datos = ['fecha' => $fecha_proforma, 'fecha_fin' => $fecha_fin, 'id_cli' => $id_cliente, 'subtotal' => $subtotalpr, 'descuento' => $descuento, 'iva' => $iva, 'subtotalall' => $subtotal_descuento, 'total' => $total, 'terminos_condiciones' => $texto_terminos_condiciones];
-            $respuesta = $this->wrpro_agregar_datos_bd("wrpro_proforma", $datos);
-            $proximoId = $this->wrpro_maximo_id("wrpro_proforma", "id"); //agregar termino condicion
+            $respuesta = $this->wbct_agregar_datos_bd("wbct_cotizacion", $datos);
+            $proximoId = $this->wbct_maximo_id("wbct_cotizacion", "id"); //agregar termino condicion
 
             if ($respuesta) {
                 $i = 0;
                 while ($i < count($cantidad_producto)) {
-                    $datos_producto = ['id' => null, 'prod' => trim($nombre_producto[$i]), 'descrip' => trim($descripcion_producto[$i]), 'precio' => $prec_unit[$i]];
-                    $this->wrpro_agregar_datos_bd("wrpro_producto",  $datos_producto);
-                    $cod_producto = $this->wrpro_maximo_id("wrpro_producto", "id");
+                    $datos_producto = ['id' => null, 'producto' => trim($nombre_producto[$i]), 'descripcion' => trim($descripcion_producto[$i]), 'precio' => $prec_unit[$i]];
+                    $this->wbct_agregar_datos_bd("wbct_producto",  $datos_producto);
+                    $cod_producto = $this->wbct_maximo_id("wbct_producto", "id");
                     $subtotall = ($cantidad_producto[$i]) * ($prec_unit[$i]);
-                    $datos_detalle = ['id_prof' => $proximoId, 'cant_item' => $cantidad_producto[$i], 'cod_prod' => $cod_producto, 'prec_unit' => $prec_unit[$i], 'subtotal' => $subtotall];
-                    $this->wrpro_agregar_datos_bd("wrpro_det_proforma", $datos_detalle);
+                    $datos_detalle = ['id_cotizacion' => $proximoId, 'cant_item' => $cantidad_producto[$i], 'codigo_producto' => $cod_producto, 'prec_unit' => $prec_unit[$i], 'subtotal' => $subtotall];
+                    $this->wbct_agregar_datos_bd("wbct_detalle_cotizacion", $datos_detalle);
                     $i++;
                 }
-                $this->wrpro_query_bd('COMMIT');
-                $this->wrpro_envia_mensaje(__("Proforma se registro correctamente"), "success");
+                $this->wbct_query_bd('COMMIT');
+                $this->wbctEnviaMensaje(__("Proforma se registro correctamente"), "success");
             } else {
-                $this->wrpro_query_bd('ROLLBACK');
-                $this->wrpro_envia_mensaje(__("Error al registrar datos"), "danger");
+                $this->wbct_query_bd('ROLLBACK');
+                $this->wbctEnviaMensaje(__("Error al registrar datos"), "danger");
             }
-            $this->wrpro_admin_redireccionamiento("/admin.php?page=wrpro_menu");
+            $this->wbct_admin_redireccionamiento("/admin.php?page=wbct_menu");
         } else {
 
-            $this->wrpro_envia_mensaje(__("Error al registrar datos"), "danger");
-            $this->wrpro_admin_redireccionamiento("/admin.php?page=wrpro_menu");
+            $this->wbctEnviaMensaje(__("Error al registrar datos"), "danger");
+            $this->wbct_admin_redireccionamiento("/admin.php?page=wbct_menu");
         }
     }
 
@@ -71,13 +71,13 @@ class WRPRO_Operaciones_proforma extends WBCT_database
     {
         if (isset($_POST['eliminar_proforma']) && !empty($_POST['eliminar_proforma'])) {
             $id_proforma = $_POST['eliminar_proforma'];
-            $this->wrpro_eliminar_bd("wrpro_det_proforma", array("id_prof" => $id_proforma));
-            $this->wrpro_eliminar_bd("wrpro_proforma", array("id" => $id_proforma));
-            $this->wrpro_envia_mensaje(__("Proforma eliminada correctamente"), "success");
-            $this->wrpro_admin_redireccionamiento("/admin.php?page=wrpro_menu");
+            $this->wbct_eliminar_bd("wbct_detalle_cotizacion", array("id_cotizacion" => $id_proforma));
+            $this->wbct_eliminar_bd("wbct_cotizacion", array("id" => $id_proforma));
+            $this->wbctEnviaMensaje(__("Proforma eliminada correctamente"), "success");
+            $this->wbct_admin_redireccionamiento("/admin.php?page=wbct_menu");
         } else {
-            $this->wrpro_envia_mensaje(__("Error al eliminar proforma"), "danger");
-            $this->wrpro_admin_redireccionamiento("/admin.php?page=wrpro_menu");
+            $this->wbctEnviaMensaje(__("Error al eliminar proforma"), "danger");
+            $this->wbct_admin_redireccionamiento("/admin.php?page=wbct_menu");
         }
     } //fin eliminar proforma
 
@@ -92,7 +92,7 @@ class WRPRO_Operaciones_proforma extends WBCT_database
         } else if (isset($_POST["crud"]) && $_POST["crud"] == "remove") {
             $this->wrpro_eliminar_proforma();
         } else {
-            $this->wrpro_admin_redireccionamiento("/admin.php?page=wrpro_menu_listproforma");
+            $this->wbct_admin_redireccionamiento("/admin.php?page=wbct_menu_cotizacion");
         }
     }
 
@@ -102,7 +102,7 @@ class WRPRO_Operaciones_proforma extends WBCT_database
         //llevar el id de la proforma para cargarlo
         if (isset($_GET["id_proforma"])) {
             $id_proforma = $_GET["id_proforma"];
-            $this->wrpro_admin_redireccionamiento("/admin.php?page=wrpro_menu_listproforma&id=$id_proforma");
+            $this->wbct_admin_redireccionamiento("/admin.php?page=wbct_menu_cotizacion&id=$id_proforma");
         }
     }
     //Cargar maximo id de proformas
@@ -120,7 +120,7 @@ class WRPRO_Operaciones_proforma extends WBCT_database
         } else {
             $this->wrpro_actualizar_cliente($codigo_cliente);
         }
-        $this->wrpro_query_bd('START TRANSACTION'); //COMIEZA TRANSACCION 
+        $this->wbct_query_bd('START TRANSACTION'); //COMIEZA TRANSACCION 
         if (isset($_POST['id_proforma']) && ($_POST['total_all']) > 0) {
             $id_proforma = $_POST['id_proforma'];
             $fecha_inicio = sanitize_text_field($_POST['fecha_ini']);
@@ -142,36 +142,36 @@ class WRPRO_Operaciones_proforma extends WBCT_database
             $nombre_producto = ($_POST['articulo']);
             $descripcion_producto = ($_POST['descrip_prod']);
 
-            ($this->wrpro_modificar_bd(
-                'wrpro_proforma',
+            ($this->wbct_modificar_bd(
+                'wbct_cotizacion',
                 array('fecha' => $fecha_inicio, 'fecha_fin' =>  $fecha_fin, 'id_cli' => $id_cliente, 'subtotal' => $subtotal_proforma, 'descuento' => $descuento, 'iva' => $iva_proforma, 'subtotalall' => $subtotal_descuento, 'total' =>  $total_proforma, 'terminos_condiciones' => $texto_terminos_condiciones),
                 array("id" => $id_proforma)
             ));
             //eliminar detalle de proforma
-            $this->wrpro_eliminar_bd("wrpro_det_proforma", array("id_prof" => $id_proforma));
+            $this->wbct_eliminar_bd("wbct_detalle_cotizacion", array("id_cotizacion" => $id_proforma));
             //Buscar productos que no se utilizan
-            $lista_producto = $this->wrpro_listar_bd("wrpro_producto");
+            $lista_producto = $this->wbct_listar_bd("wbct_producto");
             foreach ($lista_producto  as  $key => $row) {
-                $this->wrpro_eliminar_bd("wrpro_producto", array("id" => $row['id']));
+                $this->wbct_eliminar_bd("wbct_producto", array("id" => $row['id']));
             }
             $i = 0;
             while ($i < count($cantidad_producto)) {
                 /**Se debe registrar productos */
-                $datos_producto = ['id' => null, 'prod' => trim($nombre_producto[$i]), 'descrip' => trim($descripcion_producto[$i]), 'precio' => $prec_unit[$i]];
-                $this->wrpro_agregar_datos_bd("wrpro_producto",  $datos_producto);
-                $cod_producto = $this->wrpro_maximo_id("wrpro_producto", "id");
+                $datos_producto = ['id' => null, 'producto' => trim($nombre_producto[$i]), 'descripcion' => trim($descripcion_producto[$i]), 'precio' => $prec_unit[$i]];
+                $this->wbct_agregar_datos_bd("wbct_producto",  $datos_producto);
+                $cod_producto = $this->wbct_maximo_id("wbct_producto", "id");
                 $subtotall = ($cantidad_producto[$i]) * ($prec_unit[$i]);
-                $datos_detalle = ['id_prof' => $id_proforma, 'cant_item' => $cantidad_producto[$i], 'cod_prod' => $cod_producto, 'prec_unit' => $prec_unit[$i], 'subtotal' => $subtotall];
-                $this->wrpro_agregar_datos_bd("wrpro_det_proforma", $datos_detalle);
+                $datos_detalle = ['id_cotizacion' => $id_proforma, 'cant_item' => $cantidad_producto[$i], 'codigo_producto' => $cod_producto, 'prec_unit' => $prec_unit[$i], 'subtotal' => $subtotall];
+                $this->wbct_agregar_datos_bd("wbct_detalle_cotizacion", $datos_detalle);
                 $i = $i + 1;
             }
-            $this->wrpro_query_bd('COMMIT');
-            $this->wrpro_envia_mensaje(__("Proforma se actualizo correctamente"), "success");
-            $this->wrpro_admin_redireccionamiento("//admin.php?page=wrpro_menu");
+            $this->wbct_query_bd('COMMIT');
+            $this->wbctEnviaMensaje(__("Proforma se actualizo correctamente"), "success");
+            $this->wbct_admin_redireccionamiento("/admin.php?page=wbct_menu");
         } else {
-            $this->wrpro_query_bd('ROLLBACK');
-            $this->wrpro_envia_mensaje(__("Error en los datos, no se pudo actualizar proforma"), "danger");
-            $this->wrpro_admin_redireccionamiento("/admin.php?page=wrpro_menu");
+            $this->wbct_query_bd('ROLLBACK');
+            $this->wbctEnviaMensaje(__("Error en los datos, no se pudo actualizar datos"), "danger");
+            $this->wbct_admin_redireccionamiento("/admin.php?page=wbct_menu");
         }
     }
 
@@ -185,14 +185,14 @@ class WRPRO_Operaciones_proforma extends WBCT_database
             $observacion_cliente = sanitize_text_field($_POST['cliente_direccion']);
             $datos = [
                 'id' => null,
-                'nom' => $nombre_cliente,
+                'nombre' => $nombre_cliente,
                 'email' => $email_cliente,
                 'dni_ruc' =>  $ruc_cliente,
-                'telf' => $telf_cliente,
-                'observ' => $observacion_cliente
+                'telefono' => $telf_cliente,
+                'direccion' => $observacion_cliente
             ];
-            $this->wrpro_agregar_datos_bd("wrpro_cliente", $datos);
-            $id_cliente = $this->wrpro_maximo_id("wrpro_cliente", "id");
+            $this->wbct_agregar_datos_bd("wbct_cliente", $datos);
+            $id_cliente = $this->wbct_maximo_id("wbct_cliente", "id");
             return $id_cliente;
         }
     }
@@ -206,9 +206,9 @@ class WRPRO_Operaciones_proforma extends WBCT_database
             $ruc_cliente = sanitize_text_field($_POST['dni_ruc_cliente']);
             $telf_cliente = sanitize_text_field($_POST['telefono_cliente']);
             $observacion_cliente = sanitize_text_field($_POST['cliente_direccion']);
-            if ($this->wrpro_modificar_bd(
-                'wrpro_cliente',
-                array('nom' => $nombre_cliente, 'email' => $email_cliente, 'dni_ruc' => $ruc_cliente, 'telf' => $telf_cliente, 'observ' => $observacion_cliente),
+            if ($this->wbct_modificar_bd(
+                'wbct_cliente',
+                array('nombre' => $nombre_cliente, 'email' => $email_cliente, 'dni_ruc' => $ruc_cliente, 'telefono' => $telf_cliente, 'direccion' => $observacion_cliente),
                 array("id" => $id_cliente)
             )) {
                 $codigo_cliente = $id_cliente;
@@ -223,20 +223,14 @@ class WRPRO_Operaciones_proforma extends WBCT_database
     function wbct_cargar_terminos_condiciones()
     {
         return esc_attr(get_option('_wb_data_condiciones')['datos_condiciones']);
-
-        /*
-        return   $descripcion_terminos_condiciones = preg_replace('/\<br(\s*)?\/?\>/i', "\n", "1. Al cliente se le cobrará después de aceptada esta cotización.
-2. Para empezar el trabajo se necesita la cancelación del 50% y el saldo restante al entregar el trabajo.
-3. Una vez emitida la factura dispone de 3 días laborables para emitir la retención.
-4. Al incumplir las condiciones se pierde la garantía de los trabajos.");*/
     }
 
     //Cargar reportes 
-
+/*
     function wrpro_filtrar_date($date_inicio, $date_final)
     {
         $sql = "Where fecha between $date_inicio AND $date_final";
-        $lista_proformas = $this->wrpro_listar_bd_id('wrpro_proforma', $sql);
+        $lista_proformas = $this->wbct_listar_bd_id('wrpro_proforma', $sql);
         return $lista_proformas;
-    }
+    }*/
 }

@@ -155,3 +155,7 @@ textarea.form-control{
     border-radius: 10px !important;
     margin-bottom: 0 !important;
 }
+
+.wbct-box-imagenes{
+    text-align: center;
+}
