@@ -63,9 +63,10 @@ class WBCT_OperacionesConfiguraciones extends WBCT_database
     function wbct_save_image()
     {
         $imagen = sanitize_text_field($_POST['txtimage']);
-        if (isset($_POST['txtimage'])) {
-            $valores_data = array('wbct_logo' => $imagen);
-            update_option('_wb_data_imagen', $valores_data);
+        $titulo = sanitize_text_field($_POST['txttitulo']);
+        //if (isset($_POST['txtimage'])) {
+        $valores_data = array('wbct_logo' => $imagen, 'wbct_titulo' => $titulo);
+        if (update_option('_wb_data_imagen', $valores_data)) {
             $this->wbctEnviaMensaje(__("Datos registrados"), "success");
         } else {
             $this->wbctEnviaMensaje(__("Error al registrar datos "), "danger");

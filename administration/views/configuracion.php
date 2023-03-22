@@ -85,21 +85,27 @@
                                 <input type='hidden' name='action' value='wbct_configuraciones'>
                                 <input type='hidden' name='wb_logo' id="wb_logo" value='configuracion_logo'>
 
+                                <div class="form-group row">
+                                    <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Título:') ?></label>
+                                    <div class="col-md-8" style="margin-bottom: 8px;">
+                                        <input type="text" class="form-control" name="txttitulo" id="txttitulo" value="<?=$titulo;?>">
+                                    </div>
+                                </div>
 
                                 <div class="wbct-box-imagenes">
                                     <div class="wbct-load-foto">
-                                    <img src="<?=$url_imagen?>" style="max-width:360px" />
+                                        <img src="<?= $url_imagen ?>" style="max-width:360px" />
+                                        '<input id="txtimage" type="hidden" name="txtimage" value="<?=$url_imagen;?>" /> 
                                     </div>
                                 </div>
 
                                 <div class="text-center" style="margin:10px">
                                     <button class="btn btn-success" type="reset" id="btnimagen" onclick="wbct_load_logo()"> <i class="far fa-image"></i> <?php _e("Imagen") ?> </button>
-
                                 </div>
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-3 offset-md-3">
-                                        <button type="submit" name="registrar" class="btn btn-success btn-block"> <i class="fas fa-save"></i> <?php _e('Cargar') ?> </button>
+                                        <button type="submit" name="registrar" class="btn btn-success btn-block"> <i class="fas fa-save"></i> <?php _e('Registrar') ?> </button>
                                     </div>
                                 </div>
                             </form>

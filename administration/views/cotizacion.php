@@ -10,10 +10,10 @@
                     <div class="col-sm-4">
                         <div class="row">
                             <div class="form-group col-lg-6 col-md-6 col-xs-12">
-                                <img class="img-logo" width="80%" src="<?php echo plugin_dir_url(__FILE__) . '../../static/imagenes/webrevolution.png' ?>">
+                                <img class="img-logo" width="80%" src="<?= $url_imagen; ?>">
                             </div>
                             <div class="form-group col-lg-6 col-md-6 col-xs-12">
-                                <label><?php _e('Agencia de publicidad Web Revolution, Machala') ?></label>
+                                <label><?=$titulo;?></label>
                             </div>
                         </div>
                         <div class="form-group col-lg-12 col-md-12 col-xs-12">

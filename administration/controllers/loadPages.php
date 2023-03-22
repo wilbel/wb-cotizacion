@@ -66,6 +66,8 @@ class WBCT_LoadPageController
             );
         } else if ($page == "cotizacion.php") {
 
+            $titulo = esc_attr(get_option('_wb_data_imagen')['wbct_titulo']);
+            $url_imagen = esc_attr(get_option('_wb_data_imagen')['wbct_logo']);
 
             $valor_iva = !empty(esc_attr(get_option('_wb_data_iva')['valor_iva'])) ? esc_attr(get_option('_wb_data_iva')['valor_iva']) : "0";
             $load_id_cotizacion = new WRPRO_Operaciones_proforma();
@@ -226,7 +228,7 @@ class WBCT_LoadPageController
                 plugins_url('../../static/js/jsimagen.js', __FILE__),
                 array('jquery')
             );
-
+            $titulo = esc_attr(get_option('_wb_data_imagen')['wbct_titulo']);
             $url_imagen = esc_attr(get_option('_wb_data_imagen')['wbct_logo']);
             $terminos_condiciones = esc_attr(get_option('_wb_data_condiciones')['datos_condiciones']);
             $valor_iva =  esc_attr(get_option('_wb_data_iva')['valor_iva']);
