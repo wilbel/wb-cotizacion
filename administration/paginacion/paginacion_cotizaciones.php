@@ -42,8 +42,8 @@ $load_proformas = $querys->wbct_tables_multiple('wbct_cotizacion', 'wbct_cliente
                     <div class="row">
                         <div class="form-group col-sm-4 text-center">
                             <form method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                                <input type='hidden' name='action' value='wrpro-imprimir-proforma'>
-                                <input type='hidden' name='id_proforma' value='<?= $proforma->id; ?>'>
+                                <input type='text' name='action' value='wrpro-imprimir-proforma'>
+                                <input type='text' name='id_proforma' value='<?= $proforma->id; ?>'>
                                 <input type='hidden' name='crud' id="crud" value='add'>
                                 <button class="btn btn-success" style="font-size:1em"> <i class="fas fa-print"></i> </button>
                             </form>

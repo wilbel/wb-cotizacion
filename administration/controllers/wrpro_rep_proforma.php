@@ -6,10 +6,35 @@ class wrpro_imprimir_proformas
 {
     public function wrpro_imprimir_proforma($id_proforma)
     {
+
+
+      
+
         $pdf = new WRPRO_Reporte();
+
+
+        var_dump($id_proforma);
+        exit;
+
         $pdf->AliasNbPages();
-        $operaciones_bd = new WRPRO_database();
-        $proforma =  $operaciones_bd->wrpro_listar_bd_id('wrpro_proforma', 'where id =' . $id_proforma);
+
+
+
+
+
+       
+        $operaciones_bd = new WBCT_database();
+
+        
+
+        $proforma =  $operaciones_bd->wbct_listar_bd_id('wbct_cotizacion', 'where id =' . $id_proforma);
+
+
+       
+       
+
+       
+
         $fecha = 0;
         $fechafin = 0;
         $id_cli = 0;
@@ -22,7 +47,7 @@ class wrpro_imprimir_proformas
         $telf = 0;
         $observ = 0;
         $terminos_condiciones = null;
-        $valor_iva = esc_attr(get_option('_wrpro_valores_data')['valor_iva']);
+        $valor_iva = esc_attr(get_option('_wb_data_iva')['valor_iva']);
         foreach ($proforma  as  $key => $pro) {
             $fecha = $pro->fecha;
             $fechafin = $pro->fecha_fin;
@@ -34,16 +59,19 @@ class wrpro_imprimir_proformas
             $total = $pro->total;
             $terminos_condiciones = $pro->terminos_condiciones;
         }
-        $cliente =  $operaciones_bd->wrpro_listar_bd_id('wrpro_cliente', 'where id =' . $id_cli);
+        $cliente =  $operaciones_bd->wbct_listar_bd_id('wbct_cliente', 'where id =' . $id_cli);
         foreach ($cliente  as  $key => $cli) {
             $idcli = $cli->id;
-            $nomcli = $cli->nom;
+            $nomcli = $cli->nombre;
             $email = $cli->email;
             $dniruc = $cli->dni_ruc;
-            $telf = $cli->telf;
-            $observ = $cli->observ;
+            $telf = $cli->telefono;
+            $observ = $cli->direccion;
         }
-        $det_prof = $operaciones_bd->wrpro_load_detalles_factura('wrpro_producto', 'wrpro_det_proforma', $id_proforma);
+        $det_prof = $operaciones_bd->wbct_load_detalles_factura('wbct_producto', 'wbct_detalle_cotizacion', $id_proforma);
+
+      
+
         ob_start();
         $pdf->AddPage();
         $pdf->SetFont('Arial', 'B', 14);
@@ -176,15 +204,15 @@ class wrpro_imprimir_proformas
 
         $pdf->SetFillColor(255, 255, 255); //COLOR DE LAS TABLAS
         foreach ($det_prof as $key => $det) {
-            $acum_1 =  $this->wrpro_cont_lineas($det->prod); //contar la cantidad de lineas
-            $acum =  $this->wrpro_cont_lineas($det->descrip); //contar la cantidad de lineas
+            $acum_1 =  $this->wrpro_cont_lineas($det->producto); //contar la cantidad de lineas
+            $acum =  $this->wrpro_cont_lineas($det->descripcion); //contar la cantidad de lineas
             $acum =  ($acum_1 > $acum) ? $acum = $acum_1 : $acum;
             $pdf->Cell(20, $acum * 5, utf8_decode($det->cant_item), 1, 0, 'C');
             $y = $pdf->GetY();
             $pdf->SetXY(31, $y + 1);
-            $pdf->MultiCell(49, 5, utf8_decode($det->prod), 0, 1, 'C');
+            $pdf->MultiCell(49, 5, utf8_decode($det->producto), 0, 1, 'C');
             $pdf->SetXY(80, $y);
-            $pdf->MultiCell(85, 5, utf8_decode($det->descrip), 1, 1, 'C');
+            $pdf->MultiCell(85, 5, utf8_decode($det->descripcion), 1, 1, 'C');
             $pdf->SetXY(165, $y);
             $cantidad_decimales = strpos(strrev($det->prec_unit), ".");
             if ($cantidad_decimales < 3) {
@@ -257,7 +285,11 @@ class wrpro_imprimir_proformas
     {
         //Imprimir proforma
         if (isset($_POST["crud"]) && $_POST["crud"] == "add") {
+
+          
             $this->wrpro_imprimir_proforma($id_proforma);
+
+
         }
     }
 

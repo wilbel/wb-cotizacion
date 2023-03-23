@@ -221,9 +221,10 @@ class WBCT_database
     {
         $tbproducto = $this->wpdb_local->prefix . $tbproducto;
         $tbdetalle = $this->wpdb_local->prefix . $tbdetalle;
-        $sql = "SELECT id_prof,cant_item,cod_prod,prec_unit,subtotal,
-        $tbproducto.id,$tbproducto.prod, $tbproducto.descrip FROM $tbdetalle,$tbproducto
-        WHERE  id_prof = $idproforma AND $tbproducto.id=$tbdetalle.cod_prod";
+        $sql = "SELECT id_cotizacion,cant_item,codigo_producto,prec_unit,subtotal,
+        $tbproducto.id,$tbproducto.producto, $tbproducto.descripcion FROM $tbdetalle,$tbproducto
+        WHERE  id_cotizacion = $idproforma AND $tbproducto.id=$tbdetalle.codigo_producto";
         return  $this->wpdb_local->get_results($sql);
     }
 }
+

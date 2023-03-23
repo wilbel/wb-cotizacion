@@ -138,6 +138,7 @@ function wrpro_post_imprimir_proforma()
 {
     $id_proforma = ($_POST['id_proforma']);
     $reporte = new wrpro_imprimir_proformas;
+    
     $reporte->wrpro_admin_proforma($id_proforma);
 }
 //Buscar clientes
