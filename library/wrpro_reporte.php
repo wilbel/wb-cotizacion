@@ -12,7 +12,7 @@ class WRPRO_Reporte extends wrpro_FPDF
 
     function Footer()
     {
-        $imagen_wr = plugin_dir_url(__FILE__) . '../static/imagenes/icon_wr.png';
+        /*$imagen_wr = plugin_dir_url(__FILE__) . '../static/imagenes/icon_wr.png';
         $imagen_ec_cupon = plugin_dir_url(__FILE__) . '../static/imagenes/icon_ecupon.png';
         $this->SetY(-20);
         $this->SetFillColor(167, 65, 43);
@@ -74,6 +74,6 @@ class WRPRO_Reporte extends wrpro_FPDF
         $this->Ln(3);
         $this->SetX(120);
         $this->SetFont('Arial', '', 7);
-        $this->Cell(10, 3, 'machala@webrevolutionagency.com', 0, 0, 'L');
+        $this->Cell(10, 3, 'machala@webrevolutionagency.com', 0, 0, 'L');*/
     }
 }

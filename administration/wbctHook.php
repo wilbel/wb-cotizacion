@@ -75,6 +75,7 @@ function wrpro_post_proforma()
     $proforma->wrpro_admin_proforma();
 }
 //Reporte semanales, trimestrales  VERFICAR
+/*
 add_action('admin_post_wrpro-imprimir-reporte', 'wrpro_post_imprimir_reporte');
 function wrpro_post_imprimir_reporte()
 {
@@ -82,7 +83,7 @@ function wrpro_post_imprimir_reporte()
     $fecha_fin = ($_POST['fecha_fin']);
     $reporte = new wrpro_imprimir_reportes();
     $reporte->wrpro_admin_reportes($fecha_inicio, $fecha_fin);
-}
+}*/
 //Configuraciones de iva y descuento
 add_action('admin_post_wbct_configuraciones', 'wbctConfiguraciones');
 function wbctConfiguraciones()
@@ -133,14 +134,27 @@ function wrpro_buscar_producto()
 }
 add_action('wp_ajax_wrpro_buscar_producto', 'wrpro_buscar_producto');
 //Imprimir reporte
-add_action('admin_post_wrpro-imprimir-proforma', 'wrpro_post_imprimir_proforma');
-function wrpro_post_imprimir_proforma()
+
+
+
+
+add_action('admin_post_wbct-imprimir-cotizacion', 'wbctImprimirCotizacion');
+function wbctImprimirCotizacion()
 {
-    $id_proforma = ($_POST['id_proforma']);
-    $reporte = new wrpro_imprimir_proformas;
-    
-    $reporte->wrpro_admin_proforma($id_proforma);
+    $codigoCotizacion = ($_POST['codigo_cotizacion']);
+    $opcion = new WBCT_LoadPageController();
+    $opcion->imprimir_cotizacion($codigoCotizacion);
+
+    /* $reporte = new wrpro_imprimir_proformas;
+    $reporte->wrpro_admin_proforma($id_proforma);*/
 }
+
+
+
+
+
+
+
 //Buscar clientes
 function wbct_buscarCliente()
 {

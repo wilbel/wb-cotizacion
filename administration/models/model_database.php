@@ -177,7 +177,7 @@ class WBCT_database
     {
         $tabla = $this->wpdb_local->prefix . $tabla;
         $sql = "SELECT * FROM $tabla  WHERE  $tabla.id = $id_proforma";
-        $wrpro_devolver_datos = $this->wpdb_local->get_results($sql, ARRAY_A);
+        $wrpro_devolver_datos = $this->wpdb_local->get_results($sql);
        // $wrpro_devolver_datos = $this->wpdb_local->get_results($sql);
         return   $wrpro_devolver_datos;
     }

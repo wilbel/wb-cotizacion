@@ -1,0 +1,166 @@
+StartFontMetrics 4.1
+Notice Converted by PHP-font-lib
+Comment https://github.com/PhenX/php-font-lib
+EncodingScheme FontSpecific
+Copyright Copyright (c) 2019 by Suzuran. All rights reserved.
+FontName Silver Pen
+FontSubfamily Regular
+UniqueID Suzuran: Silver Pen : 2019
+FullName Silver Pen
+Version Version 1.000
+PostScriptName Silver Pen
+Trademark Silver Pen is a trademark of Suzuran
+Manufacturer Suzuran
+Designer Suzuran
+Description Copyright (c) 2019 by Suzuran. All rights reserved.
+FontVendorURL www.khurasan.net
+FontDesignerURL www.khurasan.net
+Weight Medium
+ItalicAngle 0
+IsFixedPitch false
+UnderlineThickness 50
+UnderlinePosition -75
+FontHeightOffset 30
+Ascender 957
+Descender -172
+FontBBox -208 -173 1486 800
+StartCharMetrics 106
+U 0 ; WX 0 ; N NULL ; G 1
+U 13 ; WX 236 ; N CR ; G 2
+U 32 ; WX 236 ; N space ; G 3
+U 33 ; WX 201 ; N exclam ; G 75
+U 34 ; WX 191 ; N quotedbl ; G 79
+U 35 ; WX 340 ; N numbersign ; G 71
+U 36 ; WX 240 ; N dollar ; G 70
+U 39 ; WX 137 ; N quotesingle ; G 73
+U 42 ; WX 196 ; N asterisk ; G 74
+U 43 ; WX 253 ; N plus ; G 63
+U 44 ; WX 121 ; N comma ; G 72
+U 45 ; WX 261 ; N hyphen ; G 62
+U 46 ; WX 105 ; N period ; G 66
+U 47 ; WX 196 ; N slash ; G 77
+U 48 ; WX 0 ; N zero ; G 105
+U 49 ; WX 209 ; N one ; G 52
+U 50 ; WX 337 ; N two ; G 53
+U 51 ; WX 283 ; N three ; G 54
+U 52 ; WX 281 ; N four ; G 55
+U 53 ; WX 286 ; N five ; G 56
+U 54 ; WX 229 ; N six ; G 57
+U 55 ; WX 240 ; N seven ; G 58
+U 56 ; WX 271 ; N eight ; G 59
+U 57 ; WX 251 ; N nine ; G 60
+U 58 ; WX 141 ; N colon ; G 67
+U 59 ; WX 141 ; N semicolon ; G 81
+U 61 ; WX 258 ; N equal ; G 78
+U 63 ; WX 303 ; N question ; G 76
+U 64 ; WX 302 ; N at ; G 65
+U 65 ; WX 669 ; N A ; G 101
+U 66 ; WX 551 ; N B ; G 102
+U 67 ; WX 449 ; N C ; G 80
+U 68 ; WX 692 ; N D ; G 103
+U 69 ; WX 484 ; N E ; G 4
+U 70 ; WX 479 ; N F ; G 5
+U 71 ; WX 411 ; N G ; G 6
+U 72 ; WX 568 ; N H ; G 7
+U 73 ; WX 335 ; N I ; G 8
+U 74 ; WX 447 ; N J ; G 9
+U 75 ; WX 444 ; N K ; G 10
+U 76 ; WX 367 ; N L ; G 11
+U 77 ; WX 591 ; N M ; G 12
+U 78 ; WX 666 ; N N ; G 13
+U 79 ; WX 459 ; N O ; G 14
+U 80 ; WX 572 ; N P ; G 15
+U 81 ; WX 478 ; N Q ; G 16
+U 82 ; WX 638 ; N R ; G 17
+U 83 ; WX 459 ; N S ; G 18
+U 84 ; WX 286 ; N T ; G 19
+U 85 ; WX 484 ; N U ; G 20
+U 86 ; WX 316 ; N V ; G 21
+U 87 ; WX 510 ; N W ; G 22
+U 88 ; WX 492 ; N X ; G 23
+U 89 ; WX 469 ; N Y ; G 24
+U 90 ; WX 506 ; N Z ; G 25
+U 95 ; WX 358 ; N underscore ; G 64
+U 97 ; WX 268 ; N a ; G 26
+U 98 ; WX 238 ; N b ; G 27
+U 99 ; WX 198 ; N c ; G 28
+U 100 ; WX 259 ; N d ; G 29
+U 101 ; WX 198 ; N e ; G 30
+U 102 ; WX 195 ; N f ; G 31
+U 103 ; WX 239 ; N g ; G 32
+U 104 ; WX 265 ; N h ; G 33
+U 105 ; WX 104 ; N i ; G 34
+U 106 ; WX 120 ; N j ; G 35
+U 107 ; WX 231 ; N k ; G 36
+U 108 ; WX 119 ; N l ; G 37
+U 109 ; WX 409 ; N m ; G 38
+U 110 ; WX 264 ; N n ; G 39
+U 111 ; WX 204 ; N o ; G 40
+U 112 ; WX 241 ; N p ; G 41
+U 113 ; WX 228 ; N q ; G 42
+U 114 ; WX 231 ; N r ; G 43
+U 115 ; WX 192 ; N s ; G 44
+U 116 ; WX 133 ; N t ; G 45
+U 117 ; WX 269 ; N u ; G 46
+U 118 ; WX 210 ; N v ; G 47
+U 119 ; WX 359 ; N w ; G 48
+U 120 ; WX 207 ; N x ; G 49
+U 121 ; WX 248 ; N y ; G 50
+U 122 ; WX 192 ; N z ; G 51
+U 305 ; WX 104 ; N dotlessi ; G 69
+U 711 ; WX 136 ; N caron ; G 68
+U 730 ; WX 119 ; N ring ; G 61
+U 57370 ; WX 401 ; N a_t ; G 82
+U 57371 ; WX 402 ; N u_t ; G 84
+U 57372 ; WX 331 ; N e_t ; G 85
+U 57373 ; WX 337 ; N o_t ; G 86
+U 57374 ; WX 387 ; N a_l ; G 88
+U 57375 ; WX 232 ; N i_l ; G 89
+U 57376 ; WX 399 ; N u_l ; G 90
+U 57377 ; WX 312 ; N e_l ; G 91
+U 57378 ; WX 323 ; N o_l ; G 92
+U 57379 ; WX 547 ; N h_h ; G 95
+U 57380 ; WX 859 ; N m_m ; G 96
+U 57381 ; WX 425 ; N o_o ; G 97
+U 57382 ; WX 522 ; N p_p ; G 98
+U 57393 ; WX 639 ; N v_e_r ; G 99
+U 57394 ; WX 682 ; N S_i_l ; G 100
+U 57893 ; WX 266 ; N t_t ; G 87
+U 57916 ; WX 237 ; N i_t ; G 83
+U 63168 ; WX 238 ; N l_l ; G 93
+U 64256 ; WX 390 ; N f_f ; G 94
+EndCharMetrics
+StartKernData 
+StartKernPairs 75
+
+KPX CR CR -71
+
+KPX five seven -76
+
+KPX six five -35
+KPX six colon 93
+
+KPX seven five -35
+
+KPX eight four -29
+KPX eight five -18
+KPX eight six -41
+
+KPX nine four -18
+
+KPX colon five -77
+
+KPX semicolon five -29
+
+KPX P CR -152
+
+KPX e numbersign 47
+
+KPX f CR -53
+KPX f hyphen 77
+
+KPX g CR -229
+KPX g e -64
+EndKernPairs
+EndKernData
+EndFontMetrics

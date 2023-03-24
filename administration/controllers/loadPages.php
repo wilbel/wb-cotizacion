@@ -1,5 +1,9 @@
 <?php
 
+defined('ABSPATH') or die('');
+require_once plugin_dir_path(__FILE__) . '../../library/dompdf/autoload.inc.php';
+use Dompdf\Dompdf;
+
 class WBCT_LoadPageController
 {
     function __construct()
@@ -232,14 +236,7 @@ class WBCT_LoadPageController
             $url_imagen = esc_attr(get_option('_wb_data_imagen')['wbct_logo']);
             $terminos_condiciones = esc_attr(get_option('_wb_data_condiciones')['datos_condiciones']);
             $valor_iva =  esc_attr(get_option('_wb_data_iva')['valor_iva']);
-        } else if ($page == "reportes.phtml") {
-            $fecha_inicio = isset($_POST['txt_date_inicio']) ? $_POST['txt_date_inicio'] : date("Y-m-d");
-            $fecha_fin = isset($_POST['txt_date_fin']) ? $_POST['txt_date_fin'] : date("Y-m-d");
-            $bd_operaciones_reportes = new WRPRO_database();
-            $where = "WHERE " . $bd_operaciones_reportes->wrpro_get_prefijo_table() . WRPRO_database::wrpro_tabla_proforma . ".fecha between '$fecha_inicio' AND '$fecha_fin'";
-            $listar_proformas = $bd_operaciones_reportes->wrpro_listar_bd_id(WRPRO_database::wrpro_tabla_proforma, $where);
-            $oper_clientes = new WRPRO_Operaciones_clientes();
-        }
+        } 
         require_once plugin_dir_path(__FILE__) . '../views/' . $page;
     }
 
@@ -252,5 +249,24 @@ class WBCT_LoadPageController
             </div>');
             $_SESSION["wrpro_mensaje"] = null;
         }
+    }
+
+
+    function imprimir_cotizacion($codigoCotizacion)
+    {
+       $nombreCotizacion = "Cotizacion-".$codigoCotizacion;
+        ob_start();
+        require_once plugin_dir_path(__FILE__) . '../views/reporte.php';
+        $html = ob_get_clean();
+        $dompdf = new Dompdf();
+        $options = $dompdf->getOptions();
+        $options->set(array('isRemoteEnabled' => true));
+       // $paper_size = array(0, 0,360, 360); 
+        $dompdf->setPaper('portrait');
+       // $dompdf->setPaper($paper_size);
+        $dompdf->setOptions($options);
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+        $dompdf->stream($nombreCotizacion, array("Attachment" => 0));
     }
 }

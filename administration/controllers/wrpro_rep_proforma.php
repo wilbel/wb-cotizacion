@@ -1,5 +1,6 @@
 <?php
 defined('ABSPATH') or die('');
+
 require_once plugin_dir_path(__FILE__) . '../../library/wrpro_reporte.php';
 
 class wrpro_imprimir_proformas
@@ -7,14 +8,14 @@ class wrpro_imprimir_proformas
     public function wrpro_imprimir_proforma($id_proforma)
     {
 
+       
 
-      
 
         $pdf = new WRPRO_Reporte();
 
-
         var_dump($id_proforma);
         exit;
+
 
         $pdf->AliasNbPages();
 
@@ -22,18 +23,18 @@ class wrpro_imprimir_proformas
 
 
 
-       
+
         $operaciones_bd = new WBCT_database();
 
-        
+
 
         $proforma =  $operaciones_bd->wbct_listar_bd_id('wbct_cotizacion', 'where id =' . $id_proforma);
 
 
-       
-       
 
-       
+
+
+
 
         $fecha = 0;
         $fechafin = 0;
@@ -70,7 +71,7 @@ class wrpro_imprimir_proformas
         }
         $det_prof = $operaciones_bd->wbct_load_detalles_factura('wbct_producto', 'wbct_detalle_cotizacion', $id_proforma);
 
-      
+
 
         ob_start();
         $pdf->AddPage();
@@ -286,10 +287,8 @@ class wrpro_imprimir_proformas
         //Imprimir proforma
         if (isset($_POST["crud"]) && $_POST["crud"] == "add") {
 
-          
+
             $this->wrpro_imprimir_proforma($id_proforma);
-
-
         }
     }
 
