@@ -1,16 +1,15 @@
 <style>
     .cabezera {
         display: flex;
-
+      height: auto;
     }
 
     .col-2 {
-        margin-left: 50%;
+        margin-left: 60%;
     }
 
     .headtable {
         border: 1px solid;
-
 
     }
 
@@ -51,55 +50,79 @@ $url_imagen = esc_attr(get_option('_wb_data_imagen')['wbct_logo']);
 ?>
 
 <div class="cabezera">
-
-    <div style="width:250px">
-        <img src="<?= $url_imagen ?>" alt="" width="150px" height="150px">
-
-
+    <div style="width:58%">
+        <div style="text-align: center;"> <img src="<?= $url_imagen ?>" alt="" width="150px" height="150px"> </div>
         <br>
-
-        <?php foreach ($load_cliente  as  $key => $row) {  ?>
-            <label for="">Nombre</label>
-            <input type="text" value="<?= $row->nombre; ?>">
-            <label for="">Email</label>
-            <input type="text" value="<?= $row->email; ?>">
-
-            <label for="">ced/ruc</label>
-            <input type="text" value="<?= $row->dni_ruc; ?>">
-
-            <label for="">telefono</label>
-            <input type="text" value="<?= $row->telefono; ?>">
-
-            <label for="">direccion</label>
-            <input type="text" value="<?= $row->direccion; ?>">
-        <?php  }    ?>
+        <table style="width:100%" cellspacing="0" cellpadding="2">
+            <?php foreach ($load_cliente  as  $key => $row) {  ?>
+                <tr>
+                    <td> <label for="">Nombre</label> </td>
+                    <td> <?= $row->nombre; ?></td>
+                </tr>
+                <tr>
+                    <td><label for="">Email</label></td>
+                    <td> <?= $row->email; ?></td>
+                </tr>
+                <tr>
+                    <td> <label for="">ced/ruc</label> </td>
+                    <td> <?= $row->dni_ruc; ?> </td>
+                </tr>
+                <tr>
+                    <td> <label for="">telefono</label> </td>
+                    <td> <?= $row->telefono; ?> </td>
+                </tr>
+                <tr>
+                    <td> <label for="">direccion</label> </td>
+                    <td> <?= $row->direccion; ?></td>
+                </tr>
+            <?php } ?>
+        </table>
     </div>
 
-    <div class="col-2">
+    <div class="col-2" style="width:40%;text-align: center;">
         <h3><?= $titulo; ?></h3>
-
-        
-        <label>Nro Cotización</label>
-        <label><?php echo $codigoCotizacion; ?></label>
-        
-        
-        
-        
+        <table style="width:100%" cellspacing="0" cellpadding="2">
+            <tr>
+                <td> <label>Nro Cotización</label></td>
+                <td><label> <b> <?php echo $codigoCotizacion; ?></b></label></td>
+            </tr>
+            <tr>
+                <td><label for="">Fecha</label></td>
+                <td> <?= $fecha; ?> </td>
+            </tr>
+        </table>
         <br>
-        <label for="">Fecha</label><br>
-        <input type="text" value="<?= $fecha; ?>">
+        <table style="width:100%" cellspacing="0" cellpadding="2">
+            <tr>
+                <td> <label>RUC</label></td>
+                <td><label> <b> <?php echo $codigoCotizacion; ?></b></label></td>
+            </tr>
+            <tr>
+                <td><label>Email</label></td>
+                <td> <?= $fecha; ?> </td>
+            </tr>
+            <tr>
+                <td><label for="">telefono:</label></td>
+                <td> <?= $fecha; ?> </td>
+            </tr>
+            <tr>
+                <td><label>Dirección</label></td>
+                <td> <?= $fecha; ?> </td>
+            </tr>
+        </table>
     </div>
 </div>
+<p>hola mundo</p>
 
 <table style="width:100%" cellspacing="0" cellpadding="5">
     <thead class="headtable">
         <tr>
-            <th style="width: 5%;" class="text-center"> <?php _e("N°") ?></th>
-            <th style="width: 20%;" class="text-center"> <?php _e("Producto") ?> </th>
-            <th style="width: 35%;" class="text-center"> <?php _e("Descripcion") ?> </th>
-            <th style="width: 10%;" class="text-center"> <?php _e("Cantidad") ?> </th>
-            <th style="width: 15%;" class="text-center"> <?php _e("Precio") ?> </th>
-            <th style="width: 15%;" class="text-center"> <?php _e("Total") ?> </th>
+            <th style="width: 5%;"> <?php _e("N°") ?></th>
+            <th style="width: 20%;"> <?php _e("Producto") ?> </th>
+            <th style="width: 35%;"> <?php _e("Descripcion") ?> </th>
+            <th style="width: 10%;"> <?php _e("Cantidad") ?> </th>
+            <th style="width: 15%;"> <?php _e("Precio") ?> </th>
+            <th style="width: 15%;"> <?php _e("Total") ?> </th>
         </tr>
     </thead>
     <?php
@@ -125,11 +148,8 @@ $url_imagen = esc_attr(get_option('_wb_data_imagen')['wbct_logo']);
                 <td><?= number_format($row->subtotal, 2, '.', '') ?></td>
             </tr>
     <?php  }
-    } else {
-        echo "<tr><td class='text-center' colspan='8'>" . __('No existen datos') . "</td></tr>";
     }
     ?>
-
     <tr>
         <td colspan='4' class="tdhidden"></td>
         <td>Subtotal</td>
@@ -155,23 +175,8 @@ $url_imagen = esc_attr(get_option('_wb_data_imagen')['wbct_logo']);
         <td>Total:</td>
         <td> $ <?= number_format($total_proforma, 2, '.', '') ?></td>
     </tr>
-
-
 </table>
-
-
-
 <div>
     <p>Observaciones/Instrucciones</p>
     <textarea style="height: auto;"><?= ($terminos_condiciones); ?></textarea>
 </div>
-
-
-
-
-
-<footer>
-
-
-
-</footer>
