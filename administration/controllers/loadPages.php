@@ -70,8 +70,8 @@ class WBCT_LoadPageController
             );
         } else if ($page == "cotizacion.php") {
 
-            $titulo = esc_attr(get_option('_wb_data_imagen')['wbct_titulo']);
-            $url_imagen = esc_attr(get_option('_wb_data_imagen')['wbct_logo']);
+            $titulo = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_titulo']);
+            $url_imagen = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_logo']);
 
             $valor_iva = !empty(esc_attr(get_option('_wb_data_iva')['valor_iva'])) ? esc_attr(get_option('_wb_data_iva')['valor_iva']) : "0";
             $load_id_cotizacion = new WRPRO_Operaciones_proforma();
@@ -232,8 +232,14 @@ class WBCT_LoadPageController
                 plugins_url('../../static/js/jsimagen.js', __FILE__),
                 array('jquery')
             );
-            $titulo = esc_attr(get_option('_wb_data_imagen')['wbct_titulo']);
-            $url_imagen = esc_attr(get_option('_wb_data_imagen')['wbct_logo']);
+            $titulo = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_titulo']);
+            $url_imagen = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_logo']);
+            $propietario = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_propietario']);
+            $cedulaRuc = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_cedulaRuc']);
+            $email = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_email']);
+            $telefono = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_telefono']);
+            $direccion = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_direccion']);
+            $descripcion = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_descripcion']);
             $terminos_condiciones = esc_attr(get_option('_wb_data_condiciones')['datos_condiciones']);
             $valor_iva =  esc_attr(get_option('_wb_data_iva')['valor_iva']);
         } 

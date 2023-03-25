@@ -149,12 +149,6 @@ function wbctImprimirCotizacion()
     $reporte->wrpro_admin_proforma($id_proforma);*/
 }
 
-
-
-
-
-
-
 //Buscar clientes
 function wbct_buscarCliente()
 {

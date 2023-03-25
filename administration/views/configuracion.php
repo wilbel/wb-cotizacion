@@ -4,14 +4,14 @@
             <h1><?php _e('Cotización'); ?></h1>
         </div>
         <div class="card-body">
+            <div class="card-header header-titulo">
+                <h3 style="margin:0"><i class="fas fa-cog"></i> <?php _e('Configuraciones') ?></h3>
+            </div>
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="card-header header-titulo">
-                        <h3 style="margin:0"><i class="fas fa-cog"></i> <?php _e('Configuraciones') ?></h3>
-                    </div>
                     <?php $this->wrpro_presenta_mensaje(); ?>
                     <div class="borde-container">
-                        <div class="card-header header-subtitulo"><?php _e('Iniciar numeración de proformas') ?> </div>
+                        <div class="card-header header-subtitulo"><?php _e('Iniciar numeración de cotizaciones') ?> </div>
                         <div class="card-body">
                             <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST">
                                 <input type='hidden' name='action' value='wbct_configuraciones'>
@@ -74,34 +74,68 @@
                     </div>
                 </div>
                 <div class="col-sm-6 ">
-                    <p style="font-size: 1em;">
-                        <?php printf('En una empresa, las cotizaciones son importantes  porque ayudan con el detalle de los precios y los términos de una transacción propuesta. Por lo general, se utiliza en el contexto de una empresa o negocio que ofrece productos o servicios a sus clientes.') ?>
-                    </p>
-                    <hr style="border: 2px solid #b8ebe0;">
                     <div class="borde-container">
-                        <div class="card-header header-subtitulo"> <?php _e('Logo') ?></div>
+                        <div class="card-header header-subtitulo"> <?php _e('Datos de la empresa') ?></div>
                         <div class="card-body">
                             <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST">
                                 <input type='hidden' name='action' value='wbct_configuraciones'>
                                 <input type='hidden' name='wb_logo' id="wb_logo" value='configuracion_logo'>
 
                                 <div class="form-group row">
-                                    <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Título:') ?></label>
+                                    <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Nombre de la empresa:') ?></label>
                                     <div class="col-md-8" style="margin-bottom: 8px;">
-                                        <input type="text" class="form-control" name="txttitulo" id="txttitulo" value="<?=$titulo;?>">
+                                        <input type="text" class="form-control" name="txttitulo" id="txttitulo" value="<?= $titulo; ?>">
                                     </div>
                                 </div>
 
                                 <div class="wbct-box-imagenes">
                                     <div class="wbct-load-foto">
-                                        <img src="<?= $url_imagen ?>" style="max-width:360px" />
-                                        '<input id="txtimage" type="hidden" name="txtimage" value="<?=$url_imagen;?>" /> 
+                                        <img src="<?= $url_imagen ?>" style="max-width:260px" />
+                                        '<input id="txtimage" type="hidden" name="txtimage" value="<?= $url_imagen; ?>" />
                                     </div>
                                 </div>
-
                                 <div class="text-center" style="margin:10px">
                                     <button class="btn btn-success" type="reset" id="btnimagen" onclick="wbct_load_logo()"> <i class="far fa-image"></i> <?php _e("Imagen") ?> </button>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Titular:') ?></label>
+                                    <div class="col-md-8" style="margin-bottom: 8px;">
+                                        <input type="text" class="form-control" name="txtpropietario" id="txtpropietario" value="<?= $propietario; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Ced/Ruc:') ?></label>
+                                    <div class="col-md-8" style="margin-bottom: 8px;">
+                                        <input type="text" class="form-control" name="cedulaRuc" id="cedulaRuc" value="<?= $cedulaRuc; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Email:') ?></label>
+                                    <div class="col-md-8" style="margin-bottom: 8px;">
+                                        <input type="email" class="form-control" name="txtemail" id="txtemail" value="<?= $email; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Teléfono:') ?></label>
+                                    <div class="col-md-8" style="margin-bottom: 8px;">
+                                        <input type="text" class="form-control" name="telefono" id="telefono" value="<?= $telefono; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Dirección:') ?></label>
+                                    <div class="col-md-8" style="margin-bottom: 8px;">
+                                        <input type="text" class="form-control" name="direccion" id="direccion" value="<?= $direccion; ?>">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Descripción:') ?></label>
+                                    <div class="col-md-8" style="margin-bottom: 8px;">
+                                        <textarea class="form-control" name="descripcion" id="descripcion" cols="30" rows="10" value="<?= $descripcion; ?>"><?= $descripcion; ?></textarea>
+                                    </div>
+                                </div>
+
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-3 offset-md-3">

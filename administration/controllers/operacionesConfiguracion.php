@@ -63,10 +63,24 @@ class WBCT_OperacionesConfiguraciones extends WBCT_database
     function wbct_save_image()
     {
         $imagen = sanitize_text_field($_POST['txtimage']);
-        $titulo = sanitize_text_field($_POST['txttitulo']);
-        //if (isset($_POST['txtimage'])) {
-        $valores_data = array('wbct_logo' => $imagen, 'wbct_titulo' => $titulo);
-        if (update_option('_wb_data_imagen', $valores_data)) {
+        $nombreEmpresa = sanitize_text_field($_POST['txttitulo']);
+        $propietario = sanitize_text_field($_POST['txtpropietario']);
+        $cedulaRuc = sanitize_text_field($_POST['cedulaRuc']);
+        $email = sanitize_text_field($_POST['txtemail']);
+        $telefono = sanitize_text_field($_POST['telefono']);
+        $direccion = sanitize_text_field($_POST['direccion']);
+        $descripcion = sanitize_text_field($_POST['descripcion']);
+        $valores_data = array(
+            'wbct_logo' => $imagen,
+            'wbct_titulo' => $nombreEmpresa,
+            'wbct_propietario' => $propietario,
+            'wbct_cedulaRuc' => $cedulaRuc,
+            'wbct_email' => $email,
+            'wbct_telefono'=>$telefono,
+            'wbct_direccion'=>$direccion,
+            'wbct_descripcion'=>$descripcion
+        );
+        if (update_option('_wb_data_datosEmpresa', $valores_data)) {
             $this->wbctEnviaMensaje(__("Datos registrados"), "success");
         } else {
             $this->wbctEnviaMensaje(__("Error al registrar datos "), "danger");
