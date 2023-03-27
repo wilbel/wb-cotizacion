@@ -28,8 +28,6 @@ class WBCT_LoadPageController
             array('jquery')
         );
 
-
-
         if ($page == "clientes.php") {
             $operaciones_clientes = new WBCT_OperacionesClientes();
             $aux = isset($_POST['codigo_cliente']) ? "update" : "add";
@@ -73,10 +71,8 @@ class WBCT_LoadPageController
 
             $titulo = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_titulo']);
             $url_imagen = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_logo']);
-
             $valor_iva = !empty(esc_attr(get_option('_wb_data_iva')['valor_iva'])) ? esc_attr(get_option('_wb_data_iva')['valor_iva']) : "0";
             $load_id_cotizacion = new WRPRO_Operaciones_proforma();
-
             $fecha__fin_proforma =  date('Y-m-d', strtotime(date("d-m-Y") . ' + 5 days'));
             $id_cliente = "";
             $codigo_proforma = "";
@@ -93,47 +89,47 @@ class WBCT_LoadPageController
 
             if (isset($_GET['id'])) {
                 $codigo_proforma = $_GET['id'];
-                $mensaje = "Editar Proforma";
+                $mensaje = "Editar Cotización";
                 $aux = "update";
                 $ocultar_cancelar_save = "none";
                 $ocultar_cancelar_update = "block";
                 $wrpro_estado = "";
                 $ocultar_listar_proforma = "none";
-                $id_proforma = $_GET['id'];
                 $wrpro_load_datos = new  WBCT_database();
-                $load_proforma = $wrpro_load_datos->wbct_buscar_proforma_id("wbct_cotizacion", $id_proforma);
+                $load_proforma = $wrpro_load_datos->wbct_buscar_proforma_id("wbct_cotizacion", $_GET['id']);
 
                 foreach ($load_proforma  as  $key => $row) {
-                    $codigo_cotizacion = $row['id'];
-                    $id_cliente = $row['id_cli'];
-                    $subtotal_proforma =  $row['subtotal'];
-                    $decuento = $row['descuento'];
-                    $subtotal_desc = $row['subtotalall'];
-                    $iva_proforma =  $row['iva'];
-                    $total_proforma = $row['total'];
-                    $terminos_condiciones = $row['terminos_condiciones'];
+                    $codigo_cotizacion = $row->id;
+                    $id_cliente = $row->id_cli;
+                    $subtotal_proforma =  $row->subtotal;
+                    $decuento = $row->descuento;
+                    $subtotal_desc = $row->subtotalall;
+                    $iva_proforma =  $row->iva;
+                    $total_proforma = $row->total;
+                    $terminos_condiciones = $row->terminos_condiciones;
                 }
-
+                
                 $load_cliente = $wrpro_load_datos->wbct_buscar_proforma_id("wbct_cliente",  $id_cliente);
                 foreach ($load_cliente  as  $key => $row) {
-                    $id_cliente = $row['id'];
-                    $nombre_cliente = $row['nombre'];
-                    $email_cliente  = $row['email'];
-                    $dni_ruc_cliente   = $row['dni_ruc'];
-                    $telf_cliente    = $row['telefono'];
-                    $observ_cliente   = $row['direccion'];
+                    $id_cliente = $row->id;
+                    $nombre_cliente = $row->nombre;
+                    $email_cliente  = $row->email;
+                    $dni_ruc_cliente   = $row->dni_ruc;
+                    $telf_cliente    = $row->telefono;
+                    $observ_cliente   = $row->direccion;
                 }
-
+               
                 $load_det_proforma = $wrpro_load_datos->wbct_buscar_detalle_id("wbct_detalle_cotizacion",  $_GET['id']);
+
             } else {
-                $mensaje = "Generar Proforma";
+                $mensaje = "Generar Cotización";
                 $ocultar_cancelar_save = "block";
                 $ocultar_cancelar_update = "none";
                 $aux = "add";
                 $codigo_cotizacion =  $load_id_cotizacion->wrbct_retorn_maximo_id_cotizacion();
                 $terminos_condiciones =  $load_id_cotizacion->wbct_cargar_terminos_condiciones();
             }
-
+          
             wp_enqueue_script(
                 'wbctJSnewCotizacion',
                 plugins_url('../../static/js/jsCotizacion.js', __FILE__),

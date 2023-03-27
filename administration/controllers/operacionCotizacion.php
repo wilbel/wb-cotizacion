@@ -86,9 +86,13 @@ class WRPRO_Operaciones_proforma extends WBCT_database
         if (isset($_POST["crud"]) && $_POST["crud"] == "add") {
             $this->wrpro_agregar_proforma();
         } else if (isset($_GET["crud"]) && $_GET["crud"] == "load") {
-            $this->wrpro_load_proforma();
+            
+            $this->wbctloadCotizacion();
+
+
+
         } else if (isset($_POST["crud"]) && $_POST["crud"] == "update") {
-            $this->wrpro_actualizar_proforma();
+            $this->wbct_actualizar_cotizacion();
         } else if (isset($_POST["crud"]) && $_POST["crud"] == "remove") {
             $this->wrpro_eliminar_proforma();
         } else {
@@ -97,7 +101,7 @@ class WRPRO_Operaciones_proforma extends WBCT_database
     }
 
     //load proforma para editar
-    private function wrpro_load_proforma()
+    private function wbctloadCotizacion()
     {
         //llevar el id de la proforma para cargarlo
         if (isset($_GET["id_proforma"])) {
@@ -111,9 +115,8 @@ class WRPRO_Operaciones_proforma extends WBCT_database
         return $this->wbct_maximo_id("wbct_cotizacion", "id") + 1;
     }
     //Editar proforma
-    private function wrpro_actualizar_proforma()
+    private function wbct_actualizar_cotizacion()
     {
-        // echo  $_POST['txtarea_tercond'];
         $codigo_cliente = sanitize_text_field($_POST['id_cliente']);
         if (empty($_POST['id_cliente'])) {
             $codigo_cliente = $this->wrpro_Save_cliente();

@@ -151,10 +151,10 @@
                             <button type="submit" class="btn btn-success" name="btnGuardar" id="btnGuardar" <?= $wrpro_estado ?> onclick="return wrpro_validar_registro();"><i class="fa fa-save"></i> Guardar</button>
                         </div>
                         <div class="btn-group">
-                            <a style="display:<?= $ocultar_cancelar_save;  ?>" href="admin.php?page=wrpro_menu" class="btn btn-warning"> <i class="fas fa-minus-circle"></i> Cancelar</a>
+                            <a style="display:<?= $ocultar_cancelar_save;  ?>" href="admin.php?page=wbct_menu" class="btn btn-warning"> <i class="fas fa-minus-circle"></i> Cancelar</a>
                         </div>
                         <div class="btn-group">
-                            <a style="display:<?= $ocultar_cancelar_update; ?>" href="admin.php?page=wrpro_menu" class="btn btn-warning"> <i class="fas fa-minus-circle"></i> Cancelar</a>
+                            <a style="display:<?= $ocultar_cancelar_update; ?>" href="admin.php?page=wbct_menu" class="btn btn-warning"> <i class="fas fa-minus-circle"></i> Cancelar</a>
                         </div>
                     </div>
                 </div>
