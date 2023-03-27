@@ -20,7 +20,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                        <a href="admin.php?page=wbct_menu_clientes" class="btn btn-success"> <i class="far fa-user"></i> <?php _e("clientes") ?> </a>
+                        <a href="admin.php?page=wbct_menu_clientes" class="btn btn-success"> <i class="far fa-user"></i> <?php _e("Clientes") ?> </a>
                         <a href="admin.php?page=wbct_menu_cotizacion" class="btn btn-info"><i class="fas fa-file-invoice"></i> <?php _e("Generar Cotizaciones") ?> </a>
                         <a href="admin.php?page=wbct_menu_producto" class="btn btn-info"><i class="fab fa-product-hunt"></i></i> <?php _e("Productos") ?> </a>
                         <a href="admin.php?page=wbct_menu_configuracion" class="btn btn-info"><i class="fas fa-wrench"></i></i> <?php _e("Configuraciones") ?> </a>
