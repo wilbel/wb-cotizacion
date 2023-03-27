@@ -14,7 +14,6 @@ function wbct_menu_admin()
     add_submenu_page('wbct_menu', 'listaCotizacion', 'Crear Cotizacion', 'wb_cotizacion', 'wbct_menu_cotizacion', 'wbctSubmenuCotizacion');
     add_submenu_page('wbct_menu', 'Cliente', 'Clientes', 'wb_cotizacion', 'wbct_menu_clientes', 'wbct_submenuCliente');
     add_submenu_page('wbct_menu', 'producto', 'Productos', 'wb_cotizacion', 'wbct_menu_producto', 'wbct_submenuProducto');
-    //  add_submenu_page(null, 'reportes', 'reportes', 'wb_cotizacion', 'wrpro_menu_reportes', 'wrpro_submenuProformas_reportes');
     add_submenu_page('wbct_menu', 'Configuracion', 'Configuración', 'wb_cotizacion', 'wbct_menu_configuracion', 'wbct_submenuProformas_configuracion');
 }
 //configuraciones
@@ -74,16 +73,6 @@ function wrpro_post_proforma()
     $proforma = new WRPRO_Operaciones_proforma;
     $proforma->wrpro_admin_proforma();
 }
-//Reporte semanales, trimestrales  VERFICAR
-/*
-add_action('admin_post_wrpro-imprimir-reporte', 'wrpro_post_imprimir_reporte');
-function wrpro_post_imprimir_reporte()
-{
-    $fecha_inicio = ($_POST['fecha_inicio']);
-    $fecha_fin = ($_POST['fecha_fin']);
-    $reporte = new wrpro_imprimir_reportes();
-    $reporte->wrpro_admin_reportes($fecha_inicio, $fecha_fin);
-}*/
 //Configuraciones de iva y descuento
 add_action('admin_post_wbct_configuraciones', 'wbctConfiguraciones');
 function wbctConfiguraciones()
@@ -99,7 +88,7 @@ function wrpro_registrarProducto()
     if (!wp_verify_nonce($nonce, 'seg')) {
         die('no tiene permisos para ejecutar ese ajax');
     }
-    $sql_tablas = new WRPRO_database();
+    $sql_tablas = new WBCT_database();
     $prod =  sanitize_text_field($_POST['nom_prod']);
     $descrip = preg_replace('/\<br(\s*)?\/?\>/i', "\n", ($_POST['descripcion'])); //text area
     $precio =  sanitize_text_field($_POST['precio']);
@@ -118,14 +107,14 @@ function wrpro_buscar_producto()
     if (!wp_verify_nonce($nonce, 'seg')) {
         die('no tiene permisos para ejecutar ese ajax');
     }
-    $sql_tablas = new WRPRO_database();
-    $productos_autocomp = $sql_tablas->wrpro_cargar_datos_autocompletar("wrpro_producto", "prod", ($_POST['term']));
+    $sql_tablas = new WBCT_database();
+    $productos_autocomp = $sql_tablas->wbct_cargar_datos_autocompletar("wbct_producto", "producto", ($_POST['term']));
     $return_arr = array();
     foreach ($productos_autocomp   as  $key => $row) {
         $id_prod = $row['id'];
-        $row_array['value'] = $row['prod'];
+        $row_array['value'] = $row['producto'];
         $row_array['id_pro'] = $id_prod;
-        $row_array['descrip'] = $row['descrip'];
+        $row_array['descrip'] = $row['descripcion'];
         $row_array['precio'] = $row['precio'];
         array_push($return_arr, $row_array);
     }
@@ -144,9 +133,6 @@ function wbctImprimirCotizacion()
     $codigoCotizacion = ($_POST['codigo_cotizacion']);
     $opcion = new WBCT_LoadPageController();
     $opcion->imprimir_cotizacion($codigoCotizacion);
-
-    /* $reporte = new wrpro_imprimir_proformas;
-    $reporte->wrpro_admin_proforma($id_proforma);*/
 }
 
 //Buscar clientes

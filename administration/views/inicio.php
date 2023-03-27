@@ -6,15 +6,10 @@
         <div class="well well-sm  card-body">
             <div class="row">
                 <div class="col-md-8">
-                    <h1><?php _e("Bienvenido"); ?></h1>
-                    <p><?php _e("Saludos cordiales, aquí puede gestionar clientes y  Cotizaciones."); ?></p>
-
-
+                    <h2><?php _e("Aquí puede gestionar clientes y  Cotizaciones."); ?></h2>
                     <p style="font-size: 1em;">
                         <?php printf('En una empresa, las cotizaciones son importantes  porque ayudan con el detalle de los precios y los términos de una transacción propuesta. Por lo general, se utiliza en el contexto de una empresa o negocio que ofrece productos o servicios a sus clientes.') ?>
                     </p>
-
-
                 </div>
                 <div class="col-md-4">
                     <img class="img-logo" width="50%" src="<?=$url_imagen; ?>">

@@ -2,6 +2,7 @@
 
 defined('ABSPATH') or die('');
 require_once plugin_dir_path(__FILE__) . '../../library/dompdf/autoload.inc.php';
+
 use Dompdf\Dompdf;
 
 class WBCT_LoadPageController
@@ -124,7 +125,6 @@ class WBCT_LoadPageController
                 }
 
                 $load_det_proforma = $wrpro_load_datos->wbct_buscar_detalle_id("wbct_detalle_cotizacion",  $_GET['id']);
-
             } else {
                 $mensaje = "Generar Proforma";
                 $ocultar_cancelar_save = "block";
@@ -219,7 +219,7 @@ class WBCT_LoadPageController
                 ]
             );
 
-            $url_imagen = esc_attr(get_option('_wb_data_imagen')['wbct_logo']);
+            $url_imagen = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_logo']);
         } else if ($page == "configuracion.php") {
             wp_enqueue_script(
                 'wbcotizacion_booststrap_js',
@@ -242,7 +242,7 @@ class WBCT_LoadPageController
             $descripcion = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_descripcion']);
             $terminos_condiciones = esc_attr(get_option('_wb_data_condiciones')['datos_condiciones']);
             $valor_iva =  esc_attr(get_option('_wb_data_iva')['valor_iva']);
-        } 
+        }
         require_once plugin_dir_path(__FILE__) . '../views/' . $page;
     }
 
@@ -260,16 +260,14 @@ class WBCT_LoadPageController
 
     function imprimir_cotizacion($codigoCotizacion)
     {
-       $nombreCotizacion = "Cotizacion-".$codigoCotizacion;
+        $nombreCotizacion = "Cotizacion-" . $codigoCotizacion;
         ob_start();
         require_once plugin_dir_path(__FILE__) . '../views/reporte.php';
         $html = ob_get_clean();
         $dompdf = new Dompdf();
         $options = $dompdf->getOptions();
         $options->set(array('isRemoteEnabled' => true));
-       // $paper_size = array(0, 0,360, 360); 
         $dompdf->setPaper('portrait');
-       // $dompdf->setPaper($paper_size);
         $dompdf->setOptions($options);
         $dompdf->loadHtml($html);
         $dompdf->render();

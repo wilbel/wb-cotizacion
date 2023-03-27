@@ -224,13 +224,4 @@ class WRPRO_Operaciones_proforma extends WBCT_database
     {
         return esc_attr(get_option('_wb_data_condiciones')['datos_condiciones']);
     }
-
-    //Cargar reportes 
-/*
-    function wrpro_filtrar_date($date_inicio, $date_final)
-    {
-        $sql = "Where fecha between $date_inicio AND $date_final";
-        $lista_proformas = $this->wbct_listar_bd_id('wrpro_proforma', $sql);
-        return $lista_proformas;
-    }*/
 }

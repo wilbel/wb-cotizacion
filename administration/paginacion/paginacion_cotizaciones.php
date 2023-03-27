@@ -14,6 +14,7 @@ $datos = $wpdb->prefix . 'wbct_cotizacion.id,fecha ,subtotal,descuento, iva,subt
 $where =  ' WHERE ' . $datos_busquedad . ' AND ' . $wpdb->prefix . 'wbct_cotizacion.id_cli= ' . $wpdb->prefix . 'wbct_cliente.id  ORDER BY ' .  $wpdb->prefix . 'wbct_cotizacion.id DESC LIMIT ' . $limit . ' OFFSET ' . $offset;
 $load_proformas = $querys->wbct_tables_multiple('wbct_cotizacion', 'wbct_cliente', $datos, $where); ?>
 
+
 <table class="table-responsive  table table-striped" style="font-size:12px;">
     <thead style="background-color:#f7f7f7 ;color:#000000;font-weight: bold;">
         <tr>
@@ -24,7 +25,7 @@ $load_proformas = $querys->wbct_tables_multiple('wbct_cotizacion', 'wbct_cliente
             <th style="width: 5%;" class="text-center"> <?php _e("Desc.") ?> </th>
             <th style="width: 5%;" class="text-center"> <?php _e("IVA") ?> </th>
             <th style="width: 10%;" class="text-center"> <?php _e("Total") ?> </th>
-            <th style="width: 15%;" class="text-center"> <?php _e("Accion") ?></th>
+            <th style="width: 10%;" class="text-center"> <?php _e("Accion") ?></th>
         </tr>
     </thead>
     <?php

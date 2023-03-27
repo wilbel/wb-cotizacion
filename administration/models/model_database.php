@@ -2,12 +2,6 @@
 class WBCT_database
 {
     private $wpdb_local;
-    /* const wrpro_tabla_cliente = "wrpro_cliente";
-    const wrpor_tabla_producto = "wrpro_producto";
-    const wrpro_tabla_proforma = "wrpro_proforma";
-    const wrpor_tabla_detalle = "wrpro_det_proforma";
-*/
-
     function __construct()
     {
         global $wpdb;
@@ -178,7 +172,6 @@ class WBCT_database
         $tabla = $this->wpdb_local->prefix . $tabla;
         $sql = "SELECT * FROM $tabla  WHERE  $tabla.id = $id_proforma";
         $wrpro_devolver_datos = $this->wpdb_local->get_results($sql);
-       // $wrpro_devolver_datos = $this->wpdb_local->get_results($sql);
         return   $wrpro_devolver_datos;
     }
     //encontrar detalle del producto

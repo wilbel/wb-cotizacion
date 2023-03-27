@@ -15,9 +15,9 @@ $cargar_productos = $querys->wbct_listar_bd_id('wbct_producto', ' WHERE ' . $dat
 <table class="table-responsive table table-striped" id="iptable" style="font-size:12px;">
     <thead style="background-color:#D6DBDF ;color:black;font-weight: bold;">
         <tr>
-            <th style="width: 10%;" class="text-center"><?php _e('NOMBRE PRODUCTO') ?>  </th>
-            <th style="width: 10%;" class="text-center"><?php _e('DESCRIPCIÓN') ?></th>
-            <th style="width: 10%;" class="text-center"><?php _e('PRECIO') ?></th>
+            <th style="width: 20%;" class="text-center"><?php _e('NOMBRE PRODUCTO') ?>  </th>
+            <th style="width: 50%;" class="text-center"><?php _e('DESCRIPCIÓN') ?></th>
+            <th style="width: 20%;" class="text-center"><?php _e('PRECIO') ?></th>
             <th style="width: 10%;" class="text-center"></th>
         </tr>
     </thead>
