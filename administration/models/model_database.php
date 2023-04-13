@@ -116,7 +116,7 @@ class WBCT_database
 
     final function wbctEnviaMensaje($mensaje, $status)
     {
-        $_SESSION["wrpro_mensaje"] = array('response' => $mensaje, 'status' => $status);
+        $_SESSION["wbct_mensaje"] = array('response' => $mensaje, 'status' => $status);
     }
 
     final function wbct_envia_id_proforma($id)

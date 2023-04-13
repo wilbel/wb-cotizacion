@@ -26,7 +26,7 @@
                         <a href="admin.php?page=wbct_menu_configuracion" class="btn btn-info"><i class="fas fa-wrench"></i></i> <?php _e("Configuraciones") ?> </a>
                     </div>
                 </div>
-                <?php $this->wrpro_presenta_mensaje(); ?>
+                <?php $this->wbct_presenta_mensaje(); ?>
                 <hr>
                 <input type="hidden" id="nombre_pagina" value="inicio.php">
                 <div class="wr-contenedor-search">

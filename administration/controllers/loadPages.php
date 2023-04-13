@@ -217,6 +217,10 @@ class WBCT_LoadPageController
 
             $url_imagen = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_logo']);
         } else if ($page == "configuracion.php") {
+
+            wp_enqueue_media();
+
+
             wp_enqueue_script(
                 'wbcotizacion_booststrap_js',
                 plugins_url('../../static/plugins/bootstrap/js/bootstrap.min.js', __FILE__),
@@ -242,14 +246,14 @@ class WBCT_LoadPageController
         require_once plugin_dir_path(__FILE__) . '../views/' . $page;
     }
 
-    final function wrpro_presenta_mensaje()
+    final function wbct_presenta_mensaje()
     {
-        if (isset($_SESSION["wrpro_mensaje"])) {
-            echo ('<div class="alert alert-' . ($_SESSION['wrpro_mensaje']['status']) . '">    
+        if (isset($_SESSION["wbct_mensaje"])) {
+            echo ('<div class="alert alert-' . ($_SESSION['wbct_mensaje']['status']) . '">    
             <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>' . __('Aviso:') . '</strong> ' . esc_attr($_SESSION["wrpro_mensaje"]['response']) . '
+            <strong>' . __('Aviso:') . '</strong> ' . esc_attr($_SESSION["wbct_mensaje"]['response']) . '
             </div>');
-            $_SESSION["wrpro_mensaje"] = null;
+            $_SESSION["wbct_mensaje"] = null;
         }
     }
 

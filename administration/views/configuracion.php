@@ -9,7 +9,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                    <?php $this->wrpro_presenta_mensaje(); ?>
+                    <?php $this->wbct_presenta_mensaje(); ?>
                     <div class="borde-container">
                         <div class="card-header header-subtitulo"><?php _e('Iniciar numeración de cotizaciones') ?> </div>
                         <div class="card-body">

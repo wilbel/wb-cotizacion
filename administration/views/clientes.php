@@ -8,7 +8,7 @@
                 <div class="card-header header-titulo"><?php _e("Datos del cliente") ?> </div>
                 <div class="card-body">
                     <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST">
-                        <?php $this->wrpro_presenta_mensaje(); ?>
+                        <?php $this->wbct_presenta_mensaje(); ?>
                         <input type='hidden' name='action' value='wrpoc-post-cliente'>
                         <input type='hidden' name='crud' id="crud" value='<?= $aux ?>'>
                         <input type="hidden" value="<?= $id; ?>" name="id_cliente" id="id_cliente">
