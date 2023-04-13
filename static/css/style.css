@@ -76,11 +76,6 @@ textarea.form-control{
     margin-top: 15px;
 }
 
-
-
-
-
-
 #descrip_prod {
 	position: absolute;
 	width: 10px;
@@ -158,4 +153,11 @@ textarea.form-control{
 
 .wbct-box-imagenes{
     text-align: center;
+}
+
+.btn-secondary{
+    font-size:1em;
+    color: #212529;
+    background-color: #f2f2f2;
+    border-color: #424242;
 }

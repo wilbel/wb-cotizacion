@@ -46,7 +46,7 @@ $load_proformas = $querys->wbct_tables_multiple('wbct_cotizacion', 'wbct_cliente
                                 <input type='hidden' name='action' value='wbct-imprimir-cotizacion'>
                                 <input type='hidden' name='codigo_cotizacion' value='<?= $proforma->id; ?>'>
                                 <input type='hidden' name='crud' id="crud" value='add'>
-                                <button class="btn btn-success" style="font-size:1em"> <i class="fas fa-print"></i> </button>
+                                <button class="btn btn-secondary"> <i class="fas fa-print"></i> </button>
                             </form>
                         </div>
 
@@ -54,7 +54,7 @@ $load_proformas = $querys->wbct_tables_multiple('wbct_cotizacion', 'wbct_cliente
                             <form method="GET" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                                 <input type='hidden' name='action' value='wrpro-pro-proforma'>
                                 <input type='hidden' name='crud' id="crud" value='load'>
-                                <button class="btn btn-warning" style="font-size:1em; " id="id_proforma" name="id_proforma" value="<?= $proforma->id; ?>"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-secondary" id="id_proforma" name="id_proforma" value="<?= $proforma->id; ?>"><i class="fas fa-edit"></i></button>
                             </form>
                         </div>
 
@@ -62,7 +62,7 @@ $load_proformas = $querys->wbct_tables_multiple('wbct_cotizacion', 'wbct_cliente
                             <form method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                                 <input type='hidden' name='action' value='wrpro-pro-proforma'>
                                 <input type='hidden' name='crud' id="crud" value='remove'>
-                                <button class="btn btn-danger" style="font-size:1em; " name="eliminar_proforma" value="<?= $proforma->id; ?>" onclick="return validarDelete();"><i class="fas fa-trash-alt"></i></button>
+                                <button class="btn btn-secondary"  name="eliminar_proforma" value="<?= $proforma->id; ?>" onclick="return validarDelete();"><i class="fas fa-trash-alt"></i></button>
                             </form>
                         </div>
                     </div>

@@ -64,7 +64,7 @@
                     </div>
                 </div>
 
-                <div class="alert alert-info" role="alert">
+                <div class="alert alert-secondary" role="alert">
                     <?php echo ('Para configurar el valor del IVA , diríjase a <a href="admin.php?page=wbct_menu_configuracion">Configuraciones</a>. Valor actual del IVA:' . ($valor_iva * 100)) . '%'; ?>
                 </div>
                 <hr>

@@ -33,14 +33,14 @@ $cargar_productos = $querys->wbct_listar_bd_id('wbct_producto', ' WHERE ' . $dat
                     <div class="row">
                         <div class="form-group col-sm-5">
                             <form method="POST" action="#">
-                                <button class="btn btn-warning" name="codigo_producto" style="font-size:1em;" value="<?= $value->id; ?>"><i class="far fa-edit"></i></button>
+                                <button class="btn btn-secondary" name="codigo_producto"  value="<?= $value->id; ?>"><i class="far fa-edit"></i></button>
                             </form>
                         </div>
                         <div class="form-group col-sm-5">
                             <form method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                                 <input type='hidden' name='action' value='wbct-oper-producto'>
                                 <input type='hidden' name='crud' id="crud" value='remove'>
-                                <button class="btn btn-danger" style="font-size:1em;" name="eliminar_producto" value="<?= $value->id; ?>" onclick="return validarDelete();"><i class="fas fa-trash-alt"></i></button>
+                                <button class="btn btn-secondary"  name="eliminar_producto" value="<?= $value->id; ?>" onclick="return validarDelete();"><i class="fas fa-trash-alt"></i></button>
                             </form>
                         </div>
                     </div>

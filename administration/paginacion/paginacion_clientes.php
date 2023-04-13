@@ -38,14 +38,14 @@ $lista_cliente = $querys->wbct_listar_bd_id('wbct_cliente', ' WHERE ' . $datos_b
                     <div class="row">
                         <div class="form-group col-md-6">
                             <form method="POST" action="#">
-                                <button class="btn btn-warning" name="codigo_cliente" style="font-size:1em;" value="<?= $value->id; ?>"><i class="far fa-edit"></i></button>
+                                <button class="btn btn-secondary" name="codigo_cliente" value="<?= $value->id; ?>"><i class="far fa-edit"></i></button>
                             </form>
                         </div>
                         <div class="form-group col-md-6">
                             <form method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                                 <input type='hidden' name='action' value='wrpoc-post-cliente'>
                                 <input type='hidden' name='crud' id="crud" value='remove'>
-                                <button class="btn btn-danger" style="font-size:1em;" name="eliminar_cliente" value="<?= $value->id; ?>" onclick="return validarDelete();"><i class="fas fa-trash-alt"></i></button>
+                                <button class="btn btn-secondary" name="eliminar_cliente" value="<?= $value->id; ?>" onclick="return validarDelete();"><i class="fa fa-trash-alt"></i></i></button>
                             </form>
                         </div>
                     </div>
