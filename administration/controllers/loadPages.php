@@ -216,8 +216,7 @@ class WBCT_LoadPageController
             );
 
 
-            //plugin_dir_url(__FILE__) . '../static/imagenes/proforma.png',
-           // $url_imagen = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_logo']);
+         
             $url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] :  plugin_dir_url(__FILE__) . '../static/imagenes/imagen_defecto.png');
            
 
@@ -239,7 +238,7 @@ class WBCT_LoadPageController
             );
 
             $titulo = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_titulo']) ? get_option('_wb_data_datosEmpresa')['wbct_titulo'] : '');
-            $url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] : '');
+            $url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] :  plugin_dir_url(__FILE__) . '../static/imagenes/imagen_defecto.png');
             $propietario = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_propietario']) ? get_option('_wb_data_datosEmpresa')['wbct_propietario'] : '');
             $cedulaRuc = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_cedulaRuc']) ? get_option('_wb_data_datosEmpresa')['wbct_cedulaRuc'] : '');
             $email = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_email']) ? get_option('_wb_data_datosEmpresa')['wbct_email'] : '');
@@ -248,9 +247,6 @@ class WBCT_LoadPageController
             $descripcion  = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_descripcion']) ? get_option('_wb_data_datosEmpresa')['wbct_descripcion'] : '');
             $terminos_condiciones = esc_attr(!empty(get_option('_wb_data_condiciones')['datos_condiciones']) ? get_option('_wb_data_condiciones')['datos_condiciones'] : '');
             $valor_iva =  esc_attr(!empty(get_option('_wb_data_iva')['valor_iva']) ? get_option('_wb_data_iva')['valor_iva'] : "0");
-
-
-
         }
         require_once plugin_dir_path(__FILE__) . '../views/' . $page;
     }
