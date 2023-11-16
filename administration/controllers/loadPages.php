@@ -70,7 +70,10 @@ class WBCT_LoadPageController
             );
         } else if ($page == "cotizacion.php") {
             $titulo = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_titulo']) ? get_option('_wb_data_datosEmpresa')['wbct_titulo'] : '');
-            $url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] : '');
+           
+            $url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] :  plugin_dir_url(__FILE__) . '../../static/imagenes/imagen_defecto.png');
+           
+           
             $valor_iva =  esc_attr(!empty(get_option('_wb_data_iva')['valor_iva']) ? get_option('_wb_data_iva')['valor_iva'] : "0");
 
             $load_id_cotizacion = new WRPRO_Operaciones_proforma();
@@ -217,7 +220,7 @@ class WBCT_LoadPageController
 
 
          
-            $url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] :  plugin_dir_url(__FILE__) . '../static/imagenes/imagen_defecto.png');
+            $url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] :  plugin_dir_url(__FILE__) . '../../static/imagenes/imagen_defecto.png');
            
 
         } else if ($page == "configuracion.php") {
@@ -238,7 +241,7 @@ class WBCT_LoadPageController
             );
 
             $titulo = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_titulo']) ? get_option('_wb_data_datosEmpresa')['wbct_titulo'] : '');
-            $url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] :  plugin_dir_url(__FILE__) . '../static/imagenes/imagen_defecto.png');
+            $url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] :  plugin_dir_url(__FILE__) . '../../static/imagenes/imagen_defecto.png');
             $propietario = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_propietario']) ? get_option('_wb_data_datosEmpresa')['wbct_propietario'] : '');
             $cedulaRuc = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_cedulaRuc']) ? get_option('_wb_data_datosEmpresa')['wbct_cedulaRuc'] : '');
             $email = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_email']) ? get_option('_wb_data_datosEmpresa')['wbct_email'] : '');

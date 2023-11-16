@@ -40,19 +40,22 @@ foreach ($cargarCotizacion  as  $key => $row) {
 }
 $load_cliente = $wrpro_load_datos->wbct_buscar_proforma_id("wbct_cliente",  $id_cliente);
 $cargarDetalleCotizacion = $wrpro_load_datos->wbct_buscar_detalle_id("wbct_detalle_cotizacion",  $codigoCotizacion);
-$titulo = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_titulo']);
-$url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] :  plugin_dir_url(__FILE__) . '../static/imagenes/imagen_defecto.png');
-$titulo = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_titulo']);
-$url_imagen = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_logo']);
-$propietario = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_propietario']);
-$cedulaRuc = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_cedulaRuc']);
-$email = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_email']);
-$telefono = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_telefono']);
-$direccion = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_direccion']);
-$descripcion = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_descripcion']);
 
 
-$valor_iva =  esc_attr(get_option('_wb_data_iva')['valor_iva']);
+
+$titulo = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_titulo']) ? get_option('_wb_data_datosEmpresa')['wbct_titulo'] : '');    
+$valor_iva =  esc_attr(!empty(get_option('_wb_data_iva')['valor_iva']) ? get_option('_wb_data_iva')['valor_iva'] : "0");
+$url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] :  plugin_dir_url(__FILE__) . '../../static/imagenes/imagen_defecto.png');
+$propietario = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_propietario']) ? get_option('_wb_data_datosEmpresa')['wbct_propietario'] : '');
+$cedulaRuc = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_cedulaRuc']) ? get_option('_wb_data_datosEmpresa')['wbct_cedulaRuc'] : '');
+$email = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_email']) ? get_option('_wb_data_datosEmpresa')['wbct_email'] : '');
+$telefono = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_telefono']) ? get_option('_wb_data_datosEmpresa')['wbct_telefono'] : '');
+$direccion = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_direccion']) ? get_option('_wb_data_datosEmpresa')['wbct_direccion'] : '');
+$descripcion  = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_descripcion']) ? get_option('_wb_data_datosEmpresa')['wbct_descripcion'] : '');
+
+
+
+
 ?>
 
 <div style="position:relative;display:flex;margin-bottom:0px;padding-bottom:0px">
