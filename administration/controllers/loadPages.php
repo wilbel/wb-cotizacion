@@ -33,6 +33,7 @@ class WBCT_LoadPageController
             $aux = isset($_POST['codigo_cliente']) ? "update" : "add";
             $actiu = isset($_POST['codigo_cliente']) ? "block" : "none";
             $actig = isset($_POST['codigo_cliente']) ? "none" : null;
+
             if (isset($_POST['codigo_cliente'])) {
                 $buscar_cliente =  $operaciones_clientes->wr_pro_load_clientes($_POST['codigo_cliente']);
                 foreach ($buscar_cliente as $value) {
@@ -68,9 +69,8 @@ class WBCT_LoadPageController
                 ]
             );
         } else if ($page == "cotizacion.php") {
-
-            $titulo = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_titulo']);
-            $url_imagen = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_logo']);
+            $titulo = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_titulo']) ? get_option('_wb_data_datosEmpresa')['wbct_titulo'] : '');
+            $url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] : '');
             $valor_iva = !empty(esc_attr(get_option('_wb_data_iva')['valor_iva'])) ? esc_attr(get_option('_wb_data_iva')['valor_iva']) : "0";
             $load_id_cotizacion = new WRPRO_Operaciones_proforma();
             $fecha__fin_proforma =  date('Y-m-d', strtotime(date("d-m-Y") . ' + 5 days'));
@@ -108,7 +108,7 @@ class WBCT_LoadPageController
                     $total_proforma = $row->total;
                     $terminos_condiciones = $row->terminos_condiciones;
                 }
-                
+
                 $load_cliente = $wrpro_load_datos->wbct_buscar_proforma_id("wbct_cliente",  $id_cliente);
                 foreach ($load_cliente  as  $key => $row) {
                     $id_cliente = $row->id;
@@ -118,9 +118,8 @@ class WBCT_LoadPageController
                     $telf_cliente    = $row->telefono;
                     $observ_cliente   = $row->direccion;
                 }
-               
-                $load_det_proforma = $wrpro_load_datos->wbct_buscar_detalle_id("wbct_detalle_cotizacion",  $_GET['id']);
 
+                $load_det_proforma = $wrpro_load_datos->wbct_buscar_detalle_id("wbct_detalle_cotizacion",  $_GET['id']);
             } else {
                 $mensaje = "Generar Cotización";
                 $ocultar_cancelar_save = "block";
@@ -129,7 +128,7 @@ class WBCT_LoadPageController
                 $codigo_cotizacion =  $load_id_cotizacion->wrbct_retorn_maximo_id_cotizacion();
                 $terminos_condiciones =  $load_id_cotizacion->wbct_cargar_terminos_condiciones();
             }
-          
+
             wp_enqueue_script(
                 'wbctJSnewCotizacion',
                 plugins_url('../../static/js/jsCotizacion.js', __FILE__),
@@ -232,15 +231,16 @@ class WBCT_LoadPageController
                 plugins_url('../../static/js/jsimagen.js', __FILE__),
                 array('jquery')
             );
-            $titulo = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_titulo']);
-            $url_imagen = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_logo']);
-            $propietario = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_propietario']);
-            $cedulaRuc = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_cedulaRuc']);
-            $email = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_email']);
-            $telefono = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_telefono']);
-            $direccion = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_direccion']);
-            $descripcion = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_descripcion']);
-            $terminos_condiciones = esc_attr(get_option('_wb_data_condiciones')['datos_condiciones']);
+
+            $titulo = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_titulo']) ? get_option('_wb_data_datosEmpresa')['wbct_titulo'] : '');
+            $url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] : '');
+            $propietario = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_propietario']) ? get_option('_wb_data_datosEmpresa')['wbct_propietario'] : '');
+            $cedulaRuc = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_cedulaRuc']) ? get_option('_wb_data_datosEmpresa')['wbct_cedulaRuc'] : '');
+            $email = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_email']) ? get_option('_wb_data_datosEmpresa')['wbct_email'] : '');
+            $telefono = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_telefono']) ? get_option('_wb_data_datosEmpresa')['wbct_telefono'] : '');
+            $direccion = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_direccion']) ? get_option('_wb_data_datosEmpresa')['wbct_direccion'] : '');
+            $descripcion  = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_descripcion']) ? get_option('_wb_data_datosEmpresa')['wbct_descripcion'] : '');
+            $terminos_condiciones = esc_attr(!empty(get_option('_wb_data_condiciones')['datos_condiciones']) ? get_option('_wb_data_condiciones')['datos_condiciones'] : '');
             $valor_iva =  esc_attr(get_option('_wb_data_iva')['valor_iva']);
         }
         require_once plugin_dir_path(__FILE__) . '../views/' . $page;
@@ -271,6 +271,6 @@ class WBCT_LoadPageController
         $dompdf->setOptions($options);
         $dompdf->loadHtml($html);
         $dompdf->render();
-        $dompdf->stream($nombreCotizacion, array("Attachment" => 0));
+        $dompdf->stream($nombreCotizacion, array("Attachment" => 1));
     }
 }

@@ -50,6 +50,9 @@ $email = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_email']);
 $telefono = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_telefono']);
 $direccion = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_direccion']);
 $descripcion = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_descripcion']);
+
+
+$valor_iva =  esc_attr(get_option('_wb_data_iva')['valor_iva']);
 ?>
 
 <div style="position:relative;display:flex;margin-bottom:0px;padding-bottom:0px">

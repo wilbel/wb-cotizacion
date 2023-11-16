@@ -15,19 +15,19 @@
                         <div class="form-group row" style="margin-bottom:8px">
                             <label for="" class="col-md-4 col-form-label text-md-right">Producto:</label>
                             <div class="col-md-6">
-                                <input class="form-control" value="<?= $nombre_producto ?>" type="text" name="nombre_producto" placeholder="Nombre del producto" required />
+                                <input class="form-control" value="<?= isset($nombre_producto) ? $nombre_producto : ''; ?>" type="text" name="nombre_producto" placeholder="Nombre del producto" required />
                             </div>
                         </div>
                         <div class="form-group row" style="margin-bottom:8px">
                             <label for="" class="col-md-4 col-form-label text-md-right">Descripción:</label>
                             <div class="col-md-6">
-                                <textarea class="form-control" type="text" name="descripcion_producto" placeholder="Descripción del producto" required><?= $descrip_producto ?></textarea>
+                                <textarea class="form-control" type="text" name="descripcion_producto" placeholder="Descripción del producto" required><?=isset($descrip_producto) ? $descrip_producto:''; ?></textarea>
                             </div>
                         </div>
                         <div class="form-group row" style="margin-bottom:8px">
                             <label for="" class="col-md-4 col-form-label text-md-right">Precio:</label>
                             <div class="col-md-4">
-                                <input class="form-control" value="<?= $precio_producto ?>" type="number" step="any" name="precio_producto" placeholder="Precio del producto" required autocomplete="prec_prod" />
+                                <input class="form-control" value="<?= isset($precio_producto) ? $precio_producto:''; ?>" type="number" step="any" name="precio_producto" placeholder="Precio del producto" required autocomplete="prec_prod" />
                             </div>
                         </div>
                         <div class="form-group row mb-0">

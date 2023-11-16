@@ -15,31 +15,31 @@
                         <div class="form-group row" style="margin-bottom:8px">
                             <label class="col-md-3 col-form-label text-md-right"> <?php _e("Nombre:") ?> </label>
                             <div class="col-md-8">
-                                <input class="form-control" type="text" name="nombre_cliente" value="<?= $nombre; ?>" placeholder="Nombre del cliente o empresa" required />
+                                <input class="form-control" type="text" name="nombre_cliente" value="<?= isset($nombre) ? $nombre:''; ?>" placeholder="Nombre del cliente o empresa" required />
                             </div>
                         </div>
                         <div class="form-group row" style="margin-bottom:8px">
                             <label class="col-md-3 col-form-label text-md-right"><?php _e("Correo electrónico:") ?> </label>
                             <div class="col-md-8">
-                                <input class="form-control" type="email" name="email_cliente" value="<?= $email; ?>" placeholder="Email del cliente o empresa" />
+                                <input class="form-control" type="email" name="email_cliente" value="<?= isset($email) ? $email : ''; ?>" placeholder="Email del cliente o empresa" />
                             </div>
                         </div>
                         <div class="form-group row" style="margin-bottom:8px">
                             <label class="col-md-3 col-form-label text-md-right"><?php _e("Cédula/RUC:") ?> </label>
                             <div class="col-md-8">
-                                <input class="form-control" type="number" maxlength="13" name="ruc_dni_cliente" value="<?= $dni_ruc; ?>" placeholder="Identificación del cliente o empresa" required />
+                                <input class="form-control" type="number" maxlength="13" name="ruc_dni_cliente" value="<?=isset( $dni_ruc) ? $dni_ruc:''; ?>" placeholder="Identificación del cliente o empresa" required />
                             </div>
                         </div>
                         <div class="form-group row" style="margin-bottom:8px">
                             <label class="col-md-3 col-form-label text-md-right"><?php _e("Télefono:") ?></label>
                             <div class="col-md-8">
-                                <input class="form-control" type="number" maxlength="12" id="telefono_cliente" name="telefono_cliente" value="<?= $telf; ?>" placeholder="Teléfeno del cliente o empresa" required />
+                                <input class="form-control" type="number" maxlength="12" id="telefono_cliente" name="telefono_cliente" value="<?= isset($telf) ? $telf:''; ?>" placeholder="Teléfeno del cliente o empresa" required />
                             </div>
                         </div>
                         <div class="form-group row" style="margin-bottom:8px">
                             <label class="col-md-3 col-form-label text-md-right"><?php _e("Dirección:") ?> </label>
                             <div class="col-md-8">
-                                <textarea name="direccion_cliente" class="form-control" rows="5" placeholder="Dirección del cliente"><?= $observa; ?></textarea>
+                                <textarea name="direccion_cliente" class="form-control" rows="5" placeholder="Dirección del cliente"><?= isset($observa) ? $observa :''; ?></textarea>
                             </div>
 
                         </div>

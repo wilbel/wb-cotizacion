@@ -225,6 +225,9 @@ class WRPRO_Operaciones_proforma extends WBCT_database
     //cargar terminos y condicioens 
     function wbct_cargar_terminos_condiciones()
     {
-        return esc_attr(get_option('_wb_data_condiciones')['datos_condiciones']);
+
+        return esc_attr(!empty(get_option('_wb_data_condiciones')['datos_condiciones']) ? get_option('_wb_data_condiciones')['datos_condiciones'] : '');
+           
+       // return esc_attr(get_option('_wb_data_condiciones')['datos_condiciones']);
     }
 }
