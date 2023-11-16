@@ -103,8 +103,16 @@ class WBCT_database
         $tabla = $this->wpdb_local->prefix . $tabla;
         $query = "SELECT id FROM $tabla ORDER BY id DESC limit 1";
         $resultado = $this->wpdb_local->get_results($query, ARRAY_A);
-        return   $resultado[0]['id'];
+
+        if (!empty($resultado) && is_array($resultado) && isset($resultado[0]['id'])) {
+            return   $resultado[0]['id'];
+        } else {
+            return null;
+        }
     }
+
+
+
     //Redireccionar paginas
     final function wbct_admin_redireccionamiento($argumento = "")
     {
@@ -220,4 +228,3 @@ class WBCT_database
         return  $this->wpdb_local->get_results($sql);
     }
 }
-

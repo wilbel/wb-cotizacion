@@ -12,8 +12,7 @@
  * Domain Path: /languages
  */
 
-require_once dirname(__FILE__) . '/administration/models/model_database.php'; //llamar a la clase base de datos
-
+require_once dirname(__FILE__) . '/administration/models/model_database.php'; 
 function wbct_activar()
 {
     $basedatos = new WBCT_database();
@@ -21,7 +20,7 @@ function wbct_activar()
 }
 
 register_activation_hook(__FILE__, 'wbct_activar');
-//Aniadir rol y capacidad
+
 
 function add_cliente_proforma_role()
 {
@@ -58,3 +57,7 @@ function wbct_session()
     }
 }
 add_action('init', 'wbct_session', 1);
+
+
+
+
