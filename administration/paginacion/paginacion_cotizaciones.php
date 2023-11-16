@@ -19,13 +19,13 @@ $load_proformas = $querys->wbct_tables_multiple('wbct_cotizacion', 'wbct_cliente
     <thead style="background-color:#f7f7f7 ;color:#000000;font-weight: bold;">
         <tr>
             <th style="width: 5%;" class="text-center"> <?php _e("N°") ?></th>
-            <th style="width: 40%;" class="text-center"> <?php _e("Cliente") ?> </th>
+            <th style="width: 35%;" class="text-center"> <?php _e("Cliente") ?> </th>
             <th style="width: 15%;" class="text-center"> <?php _e("Fecha") ?> </th>
             <th style="width: 5%;" class="text-center"> <?php _e("Subtotal") ?> </th>
             <th style="width: 5%;" class="text-center"> <?php _e("Desc.") ?> </th>
             <th style="width: 5%;" class="text-center"> <?php _e("IVA") ?> </th>
             <th style="width: 10%;" class="text-center"> <?php _e("Total") ?> </th>
-            <th style="width: 10%;" class="text-center"> <?php _e("Accion") ?></th>
+            <th style="width: 15%;" class="text-center"> <?php _e("Accion") ?></th>
         </tr>
     </thead>
     <?php

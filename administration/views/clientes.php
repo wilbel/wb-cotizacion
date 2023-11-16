@@ -1,7 +1,8 @@
 <div class="container-fluid">
     <div class="contenedor-principal">
-        <div class="card-header">
-            <h1><?php _e('Cotización'); ?></h1>
+       
+        <div class="card-header config_header">
+            <h1><i class="fas fa-bell"></i> <?php _e('WB Cotización'); ?></h1>
         </div>
         <div class="card-body">
             <div class="borde-container">

@@ -3,8 +3,8 @@ add_action('admin_menu', 'wbct_menu_admin');
 function wbct_menu_admin()
 {
     add_menu_page(
-        'Cotizacion',
-        'Cotizacion',
+        'WB Cotizacion',
+        'WB Cotizacion',
         'wb_cotizacion',
         'wbct_menu',
         'wbct_subemnu_mostrarContenido',

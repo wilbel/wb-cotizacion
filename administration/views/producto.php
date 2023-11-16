@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="contenedor-principal">
-        <div class="card-header">
-            <h1><?php _e('Cotización'); ?></h1>
+        <div class="card-header config_header">
+            <h1><i class="fas fa-bell"></i> <?php _e('WB Cotización'); ?></h1>
         </div>
         <div class="card-body">
             <div class="borde-container">
@@ -21,13 +21,13 @@
                         <div class="form-group row" style="margin-bottom:8px">
                             <label for="" class="col-md-4 col-form-label text-md-right">Descripción:</label>
                             <div class="col-md-6">
-                                <textarea class="form-control" type="text" name="descripcion_producto" placeholder="Descripción del producto" required><?=isset($descrip_producto) ? $descrip_producto:''; ?></textarea>
+                                <textarea class="form-control" type="text" name="descripcion_producto" placeholder="Descripción del producto" required><?= isset($descrip_producto) ? $descrip_producto : ''; ?></textarea>
                             </div>
                         </div>
                         <div class="form-group row" style="margin-bottom:8px">
                             <label for="" class="col-md-4 col-form-label text-md-right">Precio:</label>
                             <div class="col-md-4">
-                                <input class="form-control" value="<?= isset($precio_producto) ? $precio_producto:''; ?>" type="number" step="any" name="precio_producto" placeholder="Precio del producto" required autocomplete="prec_prod" />
+                                <input class="form-control" value="<?= isset($precio_producto) ? $precio_producto : ''; ?>" type="number" step="any" name="precio_producto" placeholder="Precio del producto" required autocomplete="prec_prod" />
                             </div>
                         </div>
                         <div class="form-group row mb-0">

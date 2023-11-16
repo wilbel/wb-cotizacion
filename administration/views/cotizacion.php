@@ -1,5 +1,8 @@
 <div class="container-fluid">
     <div class="contenedor-principal">
+    <div class="card-header config_header">
+            <h1><i class="fas fa-bell"></i> <?php _e('WB Cotización'); ?></h1>
+        </div>
         <div class="card-body">
             <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST" name="formulario">
                 <input type='hidden' name='action' value='wrpro-pro-proforma'>
@@ -36,7 +39,7 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="form-group col-lg-12 col-md-12 col-xs-12">
-                            <h4 class="header-titulo" style="padding:5px"><?php _e('Datos del Cliente para realizar la cotización') ?></h4>
+                            <h4 class="header-titulo" style="padding:10px;margin:0"><?php _e('Datos del Cliente para realizar la cotización') ?></h4>
                         </div>
                         <div class="form-group col-lg-12 col-md-12 col-xs-12">
                             <label for="">Cliente(*): </label>
