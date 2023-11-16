@@ -215,7 +215,12 @@ class WBCT_LoadPageController
                 ]
             );
 
-            $url_imagen = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_logo']);
+
+            //plugin_dir_url(__FILE__) . '../static/imagenes/proforma.png',
+           // $url_imagen = esc_attr(get_option('_wb_data_datosEmpresa')['wbct_logo']);
+            $url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] :  plugin_dir_url(__FILE__) . '../static/imagenes/imagen_defecto.png');
+           
+
         } else if ($page == "configuracion.php") {
 
             wp_enqueue_media();
