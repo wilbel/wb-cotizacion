@@ -60,6 +60,7 @@
                                 <div class="form-group row">
                                     <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Ingresar las politicas:') ?></label>
                                     <div class="col-md-8" style="margin-bottom: 8px;">
+                                 
                                         <textarea class="form-control" name="condiciones" id="condiciones" cols="" rows="4" placeholder="Ingresar condiciones"><?= $terminos_condiciones; ?></textarea>
                                         <small><?php _e('Ejm: 1. Se necesita el pago del 50%.'); ?></small>
                                     </div>
@@ -125,6 +126,14 @@
                                     <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Dirección:') ?></label>
                                     <div class="col-md-8" style="margin-bottom: 8px;">
                                         <input type="text" class="form-control" name="direccion" id="direccion" value="<?= $direccion; ?>">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label for="" class="col-md-3 col-form-label text-md-right"><?php _e('Sitio Web:') ?></label>
+                                    <div class="col-md-8" style="margin-bottom: 8px;">
+                                        <input type="text" class="form-control" name="sitioweb" id="sitioweb" value="<?= $site_web; ?>">
                                     </div>
                                 </div>
 

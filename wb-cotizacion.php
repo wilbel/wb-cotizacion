@@ -4,7 +4,7 @@
  * Plugin Name: WR-Cotizacion 
  * Plugin URI: https://www.wibcode.com/
  * Description: Crear cotizaciones para las empresas, dando mejor servicio a los clientes.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Wibcode
  * Author https://www.wibcode.com/
  * License: GPL2

@@ -70,6 +70,8 @@ class WBCT_OperacionesConfiguraciones extends WBCT_database
         $telefono = sanitize_text_field($_POST['telefono']);
         $direccion = sanitize_text_field($_POST['direccion']);
         $descripcion = sanitize_text_field($_POST['descripcion']);
+        $sitio_web = sanitize_text_field($_POST['sitioweb']);
+
         $valores_data = array(
             'wbct_logo' => $imagen,
             'wbct_titulo' => $nombreEmpresa,
@@ -78,7 +80,8 @@ class WBCT_OperacionesConfiguraciones extends WBCT_database
             'wbct_email' => $email,
             'wbct_telefono'=>$telefono,
             'wbct_direccion'=>$direccion,
-            'wbct_descripcion'=>$descripcion
+            'wbct_descripcion'=>$descripcion,
+            'wbct_siteweb'=>$sitio_web
         );
         if (update_option('_wb_data_datosEmpresa', $valores_data)) {
             $this->wbctEnviaMensaje(__("Datos registrados"), "success");

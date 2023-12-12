@@ -4,6 +4,7 @@ defined('ABSPATH') or die('');
 require_once plugin_dir_path(__FILE__) . '../../library/dompdf/autoload.inc.php';
 
 use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class WBCT_LoadPageController
 {
@@ -70,10 +71,10 @@ class WBCT_LoadPageController
             );
         } else if ($page == "cotizacion.php") {
             $titulo = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_titulo']) ? get_option('_wb_data_datosEmpresa')['wbct_titulo'] : '');
-           
+
             $url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] :  plugin_dir_url(__FILE__) . '../../static/imagenes/imagen_defecto.png');
-           
-           
+
+
             $valor_iva =  esc_attr(!empty(get_option('_wb_data_iva')['valor_iva']) ? get_option('_wb_data_iva')['valor_iva'] : "0");
 
             $load_id_cotizacion = new WRPRO_Operaciones_proforma();
@@ -219,10 +220,8 @@ class WBCT_LoadPageController
             );
 
 
-         
-            $url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] :  plugin_dir_url(__FILE__) . '../../static/imagenes/imagen_defecto.png');
-           
 
+            $url_imagen = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_logo']) ? get_option('_wb_data_datosEmpresa')['wbct_logo'] :  plugin_dir_url(__FILE__) . '../../static/imagenes/imagen_defecto.png');
         } else if ($page == "configuracion.php") {
 
             wp_enqueue_media();
@@ -248,8 +247,16 @@ class WBCT_LoadPageController
             $telefono = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_telefono']) ? get_option('_wb_data_datosEmpresa')['wbct_telefono'] : '');
             $direccion = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_direccion']) ? get_option('_wb_data_datosEmpresa')['wbct_direccion'] : '');
             $descripcion  = esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_descripcion']) ? get_option('_wb_data_datosEmpresa')['wbct_descripcion'] : '');
+           
             $terminos_condiciones = esc_attr(!empty(get_option('_wb_data_condiciones')['datos_condiciones']) ? get_option('_wb_data_condiciones')['datos_condiciones'] : '');
+           
             $valor_iva =  esc_attr(!empty(get_option('_wb_data_iva')['valor_iva']) ? get_option('_wb_data_iva')['valor_iva'] : "0");
+            $site_web =  esc_attr(!empty(get_option('_wb_data_datosEmpresa')['wbct_siteweb']) ? get_option('_wb_data_datosEmpresa')['wbct_siteweb'] : "");
+       
+          
+
+       
+       
         }
         require_once plugin_dir_path(__FILE__) . '../views/' . $page;
     }
@@ -278,7 +285,21 @@ class WBCT_LoadPageController
         $dompdf->setPaper('portrait');
         $dompdf->setOptions($options);
         $dompdf->loadHtml($html);
+
         $dompdf->render();
-        $dompdf->stream($nombreCotizacion, array("Attachment" => 1));
+        // Obtén la altura máxima del lienzo
+        $canvasHeight = $dompdf->getCanvas()->get_height();
+        // Ajusta la posición y el estilo del texto en el pie de página (centrado)
+        $canvas = $dompdf->getCanvas();
+        $text = "- Página {PAGE_NUM} de {PAGE_COUNT} -";
+        $font = $dompdf->getFontMetrics()->get_font('Arial, Helvetica, sans-serif', 'normal', 10);
+        $textWidth = $dompdf->getCanvas()->get_Text_Width($text, $font,2);
+        $x = ($canvas->get_width() - $textWidth) / 2;
+        $y = $canvasHeight - 30;  // Ajusta según sea necesario
+        $canvas->page_text($x, $y, $text, $font, 10, array(0, 0, 0));
+
+
+
+        $dompdf->stream($nombreCotizacion, array("Attachment" => 0));
     }
 }
